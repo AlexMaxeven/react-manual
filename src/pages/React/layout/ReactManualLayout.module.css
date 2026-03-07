@@ -1,0 +1,27 @@
+.root{
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.pageFade {
+    animation: pageFadeIn 2s ease forwards;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

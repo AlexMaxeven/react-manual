@@ -1,0 +1,32 @@
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+
+    display: inline-grid;
+    place-items: center;
+    gap: 4px;
+    padding: 8px;
+}
+
+.line {
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.lineTopOpen {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.lineMidOpen {
+    opacity: 0;
+}
+
+.lineBotOpen {
+    transform: translateY(-6px) rotate(-45deg);
+}

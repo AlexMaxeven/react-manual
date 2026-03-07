@@ -1,0 +1,33 @@
+.base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    height: 40px;
+    padding: 0 14px;
+
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+
+    font: inherit;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.primary {
+    background: var(--card);
+}
+
+.primary:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ghost {
+    background: transparent;
+    opacity: 0.9;
+}
+
+.ghost:hover {
+    opacity: 1;
+}
