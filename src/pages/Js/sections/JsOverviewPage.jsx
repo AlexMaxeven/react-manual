@@ -2,7 +2,7 @@ const JsOverviewPage = () => {
     return (
         <div>
             
-            <h1>Js Intro</h1>
+            <h1>Js Overview</h1>
             
         </div>
     )

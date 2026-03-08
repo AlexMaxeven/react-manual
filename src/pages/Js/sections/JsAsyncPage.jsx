@@ -1,7 +1,7 @@
 const JsAsyncPage = () => {
     return (
         <div>
-            <h1>Js Async Page</h1>
+            <h1>Js Async</h1>
         </div>
     )
 }

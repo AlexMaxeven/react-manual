@@ -1,7 +1,7 @@
 const ReactCorePage = () => {
     return (
         <div>
-            <h1>React Manual Page</h1>
+            <h1>React Core</h1>
         </div>
     )
 }

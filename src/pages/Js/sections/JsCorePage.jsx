@@ -2,7 +2,7 @@ const JsCorePage = () => {
     return (
         <div>
             
-            <h1>Js Manual</h1>
+            <h1>Js Core</h1>
             
         </div>
     )

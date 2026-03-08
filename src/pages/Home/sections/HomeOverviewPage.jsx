@@ -4,7 +4,7 @@ import { reactHomeSections } from "../data/reactHome.data";
 const HomeOverviewPage = () => {
   return (
     <div>
-      <h1>React Manual</h1>
+      <h1>Home Overview</h1>
 
       {reactHomeSections.map((section) => (
         <InfoBlock key={section.id} title={section.title}>

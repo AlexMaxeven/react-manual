@@ -1,7 +1,7 @@
 const ReactPatternsPage = () => {
     return (
         <div>
-            <h1>React Patterns Page</h1>
+            <h1>React Patterns</h1>
         </div>
     )
 }
