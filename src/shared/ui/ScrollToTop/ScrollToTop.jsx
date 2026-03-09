@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import styles from './ScrollToTop.module.css';
+import { useEffect, useState } from "react";
+import Button from "../Button/Button";
+import styles from "./ScrollToTop.module.css";
 
-const ScrollToTopButton = () => {
-const [visible, setVisible] = useState(false);
+export default function ScrollToTop() {
+    const [isVisible, setIsVisible] = useState(false);
 
-useEffect(() => {
-    const handleScroll = () => {
-        setVisible(window.scrollY > 300);
+    useEffect(() => {
+        const handleScroll = () => {
+        setIsVisible(window.scrollY > 300);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -14,20 +15,24 @@ useEffect(() => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scrollTop = () => {
+    const handleScrollToTop = () => {
         window.scrollTo({
         top: 0,
         behavior: "smooth",
         });
     };
 
-    if (!visible) return null;
+    if (!isVisible) return null;
 
     return (
-        <button className={styles.scrollTopBtn} onClick={scrollTop}>
-        ↑
-        </button>
+        <div className={styles.wrapper}>
+        <Button
+            onClick={handleScrollToTop}
+            className={styles.scrollButton}
+            aria-label="Scroll to top"
+        >
+            ↑
+        </Button>
+        </div>
     );
-};
-
-export default ScrollToTopButton;
+}

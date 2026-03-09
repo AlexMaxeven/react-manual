@@ -1,16 +1,21 @@
-import styles from './Button.module.css';
+import styles from "./Button.module.css";
 
 export default function Button({
     children,
-    variant = "primary", // primary | ghost
+    variant = "primary",
     type = "button",
+    className = "",
     ...props
-}) {
+    }) {
     const cls = variant === "ghost" ? styles.ghost : styles.primary;
 
     return (
-    <button className={`${styles.base} ${cls}`} type={type} {...props}>
+        <button
+        className={`${styles.base} ${cls} ${className}`}
+        type={type}
+        {...props}
+        >
         {children}
-    </button>
+        </button>
     );
 }
