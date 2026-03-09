@@ -1,12 +1,12 @@
 import { InfoBlock, ContentRenderer } from "@/shared/content";
-import { reactHomeSections } from "../data/reactHome.data";
+import { typeScriptSections } from "../data/typeScript.data";
 
-const HomeOverviewPage = () => {
+const TypeScriptOverviewPage = () => {
   return (
     <div>
-      <h1>Home Overview</h1>
+      <h1>Overview</h1>
 
-      {reactHomeSections.map((section) => (
+      {typeScriptSections.map((section) => (
         <InfoBlock key={section.id} title={section.title}>
           <ContentRenderer blocks={section.blocks} />
         </InfoBlock>
@@ -15,4 +15,4 @@ const HomeOverviewPage = () => {
   );
 };
 
-export default HomeOverviewPage;
+export default TypeScriptOverviewPage;

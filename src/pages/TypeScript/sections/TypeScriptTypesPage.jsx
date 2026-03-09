@@ -1,12 +1,13 @@
 import { InfoBlock, ContentRenderer } from "@/shared/content";
-import  jsOverviewSections  from "@/pages/Js/data/jsOverview.data";
+import { typeScriptTypesSections } from "../data/typeScriptTypes.data";
 
-const JsOverviewPage = () => {
+const TypeScriptTypesPage = () => {
+
     return (
         <div>
-            <h1>Overview</h1>
+            <h1>Types</h1>
 
-            {jsOverviewSections.map((section) => (
+            {typeScriptTypesSections.map((section) => (
                 <InfoBlock key={section.id} title={section.title}>
                     <ContentRenderer blocks={section.blocks} />
                 </InfoBlock>
@@ -15,4 +16,4 @@ const JsOverviewPage = () => {
     )
 }
 
-export default JsOverviewPage;
+export default TypeScriptTypesPage;

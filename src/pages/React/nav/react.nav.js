@@ -1,6 +1,7 @@
 export const reactNav = [
   { to: "overview", label: "Overview", end: true },
-  { to: "core", label: "Core" },
+  { to: "basics", label: "Basics" },
   { to: "hooks", label: "Hooks" },
-  { to: "patterns", label: "Patterns" },
+  { to: "routing", label: "Routing" },
+  { to: "roadmap", label: "Roadmap" },
 ];

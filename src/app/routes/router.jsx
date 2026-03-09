@@ -2,24 +2,30 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import AppLayout from "@/app/AppLayout";
 
 import {
-  HomeManualLayout,
-  HomeOverviewPage,
-  HomeRoadmapPage,
-} from "@/pages/Home";
+  TypeScriptManualLayout,
+  TypeScriptOverviewPage,
+  TypeScriptRoadmapPage,
+  TypeScriptTypesPage,
+  TypeScriptInterfacesPage,
+  TypeScriptGenericsPage,
+} from "@/pages/TypeScript";
 
 import {
   ReactManualLayout,
   ReactOverviewPage,
-  ReactCorePage,
+  ReactBasicsPage,
   ReactHooksPage,
-  ReactPatternsPage,
+  ReactRoutingPage,
+  ReactRoadMapPage,
 } from "@/pages/React";
 
 import {
   JsManualLayout,
   JsOverviewPage,
-  JsCorePage,
+  JsFundamentalsPage,
   JsAsyncPage,
+  JsDomePage,
+  JsRoadmapPage,
 } from "@/pages/Js";
 
 export const router = createBrowserRouter(
@@ -28,15 +34,18 @@ export const router = createBrowserRouter(
       path: "/",
       element: <AppLayout />,
       children: [
-        { index: true, element: <Navigate to="home" replace /> },
+        { index: true, element: <Navigate to="react" replace /> },
 
         {
-          path: "home",
-          element: <HomeManualLayout />,
+          path: "typeScript",
+          element: <TypeScriptManualLayout />,
           children: [
             { index: true, element: <Navigate to="overview" replace /> },
-            { path: "overview", element: <HomeOverviewPage /> },
-            { path: "roadmap", element: <HomeRoadmapPage /> },
+            { path: "overview", element: <TypeScriptOverviewPage /> },
+            { path: "types", element: <TypeScriptTypesPage /> },
+            { path: "interfaces", element: <TypeScriptInterfacesPage /> },
+            { path: "generics", element: <TypeScriptGenericsPage /> },
+            { path: "roadmap", element: <TypeScriptRoadmapPage /> },
           ],
         },
 
@@ -46,9 +55,10 @@ export const router = createBrowserRouter(
           children: [
             { index: true, element: <Navigate to="overview" replace /> },
             { path: "overview", element: <ReactOverviewPage /> },
-            { path: "core", element: <ReactCorePage /> },
+            { path: "basics", element: <ReactBasicsPage /> },
             { path: "hooks", element: <ReactHooksPage /> },
-            { path: "patterns", element: <ReactPatternsPage /> },
+            { path: "routing", element: <ReactRoutingPage /> },
+            { path: "roadmap", element: <ReactRoadMapPage /> },
           ],
         },
 
@@ -58,8 +68,10 @@ export const router = createBrowserRouter(
           children: [
             { index: true, element: <Navigate to="overview" replace /> },
             { path: "overview", element: <JsOverviewPage /> },
-            { path: "core", element: <JsCorePage /> },
+            { path: "fundamentals", element: <JsFundamentalsPage /> },
             { path: "async", element: <JsAsyncPage /> },
+            { path: "dome", element: <JsDomePage /> },
+            { path: "roadmap", element: <JsRoadmapPage /> },
           ],
         },
       ],

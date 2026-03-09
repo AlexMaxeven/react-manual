@@ -1,7 +1,7 @@
 const ReactHooksPage = () => {
     return (
         <div>
-            <h1>React Hooks </h1>
+            <h1>Hooks </h1>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { ManualNav } from '@/shared/ui';
-import { homeNav } from '@/pages/Home/nav/home.nav.js';
-import styles from './HomeManualLayout.module.css';
+import { typeScriptNav } from '@/pages/TypeScript/nav/typeScript.nav.js';
+import styles from './TypeScriptManualLayout.module.css';
 
-const HomeManualLayout = () => {
+const TypeScriptManualLayout = () => {
 
     const location = useLocation();
 
@@ -11,9 +11,9 @@ const HomeManualLayout = () => {
         <div >
             
             <ManualNav 
-                title="HOME" 
-                basePath="/home" 
-                items={homeNav} 
+                title="TYPESCRIPT" 
+                basePath="/typeScript" 
+                items={typeScriptNav} 
             />
             <div key={location.pathname} className={styles.pageFade}>
                 <Outlet />
@@ -24,4 +24,4 @@ const HomeManualLayout = () => {
     
 }
 
-export default HomeManualLayout;
+export default TypeScriptManualLayout;
