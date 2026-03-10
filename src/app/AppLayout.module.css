@@ -23,16 +23,27 @@
     display: flex;
     gap: 12px;
     position: sticky;
+    top: 0;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    inset: 0;
     background: var(--bg);
     padding: 16px;
     border-bottom: 1px solid var(--border);
     z-index: 100;
     max-width: 1200px;
     margin: 0 auto;
+
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navHidden {
+    opacity: 0;
+    transform: translateY(-16px);
+    pointer-events: none;
 }
 
 .link {
