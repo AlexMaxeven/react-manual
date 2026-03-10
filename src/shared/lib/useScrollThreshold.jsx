@@ -1,32 +1,18 @@
 import { useEffect, useState } from "react";
 
 export default function useScrollThreshold(threshold = 300) {
-  const [isPassed, setIsPassed] = useState(() => window.scrollY > threshold);
+const [isPassed, setIsPassed] = useState(false);
 
-  useEffect(() => {
-    let ticking = false;
-
-    const updateScrollState = () => {
-      const nextValue = window.scrollY > threshold;
-
-      setIsPassed((prevValue) => {
-        return prevValue === nextValue ? prevValue : nextValue;
-      });
-
-      ticking = false;
-    };
-
+useEffect(() => {
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollState);
-        ticking = true;
-      }
-    };
+        setIsPassed(window.scrollY > threshold);
+        };
 
-    window.addEventListener("scroll", handleScroll);
+        handleScroll();
+        window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [threshold]);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [threshold]);
 
-  return isPassed;
+    return isPassed;
 }
