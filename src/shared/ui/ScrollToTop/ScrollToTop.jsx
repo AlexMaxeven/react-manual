@@ -3,7 +3,7 @@ import styles from "./ScrollToTop.module.css";
 import useScrollThreshold from "@/shared/lib/useScrollThreshold";
 
 export default function ScrollToTop() {
-  const isVisible = useScrollThreshold(300);
+  const isVisible = useScrollThreshold(100);
 
   const handleScrollToTop = () => {
     window.scrollTo({

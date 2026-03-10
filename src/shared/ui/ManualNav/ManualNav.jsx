@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
+import useScrollThreshold from "@/shared/lib/useScrollThreshold";
 
 import styles from './ManualNav.module.css';
 
 const ManualNav = ({ title, basePath, items }) => {
+  const isScrolled = useScrollThreshold(300);
+
   return (
     <div className={styles.root}>
       <div className={styles.topRow}>
-        <div className={styles.title}>{title}</div>
+      <div className={`${styles.title} ${isScrolled ? styles.titleHidden : ""}`}>
+        {title}
+      </div>
 
         <nav className={styles.desktopNav}>
           {items.map((it) => (

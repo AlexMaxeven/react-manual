@@ -5,7 +5,7 @@ import ScrollToTopButton from "@/shared/ui/ScrollToTop/ScrollToTop";
 import useScrollThreshold from "@/shared/lib/useScrollThreshold";
 
 const AppLayout = () => {
-  const isScrolled = useScrollThreshold(300);
+  const isScrolled = useScrollThreshold(100);
 
   return (
     <Container className={styles.root}>
