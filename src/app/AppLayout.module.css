@@ -46,6 +46,15 @@
     pointer-events: none;
 }
 
+.navItemWrapper button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-decoration: none;
+}
+
 .link {
     text-decoration: none;
     color: inherit;

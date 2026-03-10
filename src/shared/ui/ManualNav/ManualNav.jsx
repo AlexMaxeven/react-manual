@@ -4,7 +4,7 @@ import useScrollThreshold from "@/shared/lib/useScrollThreshold";
 import styles from './ManualNav.module.css';
 
 const ManualNav = ({ title, basePath, items }) => {
-  const isScrolled = useScrollThreshold(300);
+  const isScrolled = useScrollThreshold(100);
 
   return (
     <div className={styles.root}>

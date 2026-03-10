@@ -112,7 +112,15 @@
         flex-direction: column;
         align-items: flex-center;
         gap: 6px;
-        opacity: 1;
+        transition: all 1s ease;
+        height: 100%;
+        
+    }
+
+    .title{
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
     }
 
     .desktopNav {
@@ -124,10 +132,7 @@
     }
 
     .titleHidden {
-        opacity: 0;
-        transform: translateY(-12px);
-        pointer-events: none;
-        position: fixed;
+
       }
 
     .desktopNav a{
