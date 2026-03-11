@@ -5,7 +5,8 @@
 
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: var(--card);
+    border-radius: 0px 0px 12px 12px;
+    background: var(--bg);
     backdrop-filter: blur(8px);
 
     margin-bottom: 12px;
@@ -17,21 +18,21 @@
     align-items: center;
     gap: 42px;
     width: 100%;
-    padding: 10px 12px;
+    padding: 20px;
 }
 
 .title {
     font-weight: 600;
     width: 1005;
     text-decoration: underline;
-    text-decoration-color: blue;
+    /* text-decoration-color: blue; */
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
     text-decoration-style: solid;
     /* text-decoration-color: white; */
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
-    background: blue;
+    /* background: blue; */
     color: white;
     display: block;
 }
@@ -114,13 +115,20 @@
         gap: 6px;
         transition: all 1s ease;
         height: 100%;
-        
+        padding:  8px 10px;
+    }
+
+    .root {
+        width: calc(100% + 12px);
+        margin-left: -6px;
     }
 
     .title{
         position: absolute;
         left: 10px;
         bottom: 10px;
+        color: white;
+        background-color: transparent;
     }
 
     .desktopNav {
@@ -128,12 +136,10 @@
         flex-wrap: wrap;
         justify-content: flex-end;
         align-self: end;
+        margin-left: 90px;
         max-width: 320px;
+        
     }
-
-    .titleHidden {
-
-      }
 
     .desktopNav a{
         font-size: 16px;

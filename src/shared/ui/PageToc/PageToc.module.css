@@ -1,0 +1,81 @@
+.toc {
+    position: sticky;
+    top: 54px;
+    z-index: 40;
+  
+    width: 100%;
+    margin: 12px 0 20px;
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+.tocTrigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.tocTrigger:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.icon {
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+.iconOpen {
+    transform: rotate(180deg);
+}
+
+.tocContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.tocContentOpen {
+    max-height: 700px;
+}
+
+.tocNav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 16px 16px;
+}
+
+.tocLink {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.85;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.tocLink:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .toc {
+        top: 60px;
+    }
+}
