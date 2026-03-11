@@ -2,14 +2,14 @@
     position: sticky;
     top: 54px;
     z-index: 40;
-  
+
     width: 100%;
     margin: 12px 0 20px;
     /* border: 1px solid var(--border); */
     border-radius: 0px;
     background: var(--bg);
     overflow: hidden;
-  }
+}
 
 .tocTrigger {
     width: 100%;
@@ -39,10 +39,22 @@
 }
 
 .tocContent {
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 0.35s ease,
+      opacity 0.25s ease;
+  }
+  
+  .tocContentOpen {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  
+  .tocInner {
     overflow: hidden;
-    transition: max-height 0.35s ease;
-}
+  }
 
 .tocContentOpen {
     max-height: 700px;
