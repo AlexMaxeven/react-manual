@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 export default function useScrollThreshold(threshold = 300) {
-const [isPassed, setIsPassed] = useState(false);
+    const [isPassed, setIsPassed] = useState(false);
 
-useEffect(() => {
-    const handleScroll = () => {
-        setIsPassed(window.scrollY > threshold);
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsPassed(window.scrollY > threshold);
         };
 
         handleScroll();

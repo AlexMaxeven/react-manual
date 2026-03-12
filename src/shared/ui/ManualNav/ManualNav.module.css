@@ -19,6 +19,8 @@
     gap: 42px;
     width: 100%;
     padding: 20px;
+    background: var(--bg);
+    transition: all 1s ease;
 }
 
 .title {

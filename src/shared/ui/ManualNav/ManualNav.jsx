@@ -19,6 +19,7 @@ const ManualNav = ({ title, basePath, items }) => {
               key={it.to}
               to={`${basePath}/${it.to}`}
               end={it.end}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className={({ isActive }) => (
                 isActive ? styles.linkActive : styles.link
             )}

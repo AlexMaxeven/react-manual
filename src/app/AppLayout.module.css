@@ -76,6 +76,7 @@
 .main {
     padding-top: 8px;
     height: 100%;
+    padding-bottom: 8px;
 }
 
 .pageFade {

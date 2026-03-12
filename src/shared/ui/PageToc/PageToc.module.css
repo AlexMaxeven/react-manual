@@ -35,7 +35,7 @@
 }
 
 .iconOpen {
-    transform: rotate(180deg);
+    transform: scaleY(-1);
 }
 
 .tocContent {
@@ -43,18 +43,18 @@
     grid-template-rows: 0fr;
     opacity: 0;
     transition:
-      grid-template-rows 0.35s ease,
-      opacity 0.25s ease;
-  }
-  
-  .tocContentOpen {
+    grid-template-rows 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.tocContentOpen {
     grid-template-rows: 1fr;
     opacity: 1;
-  }
-  
-  .tocInner {
+}
+
+.tocInner {
     overflow: hidden;
-  }
+}
 
 .tocContentOpen {
     max-height: 700px;

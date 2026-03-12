@@ -1,5 +1,6 @@
 import { InfoBlock, ContentRenderer } from "@/shared/content";
 import { typeScriptTypesSections } from "../data/typeScriptTypes.data";
+import { PageToc } from "@/shared/ui";
 
 const TypeScriptTypesPage = () => {
 
@@ -7,8 +8,11 @@ const TypeScriptTypesPage = () => {
         <div>
             <h1>Types</h1>
 
+            <PageToc items={typeScriptTypesSections.map(({ id, title }) => ({ id, title }))} />
+
+
             {typeScriptTypesSections.map((section) => (
-                <InfoBlock key={section.id} title={section.title}>
+                <InfoBlock key={section.id} id={section.id} title={section.title}>
                     <ContentRenderer blocks={section.blocks} />
                 </InfoBlock>
             ))}

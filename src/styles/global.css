@@ -45,3 +45,9 @@ body {
 section[id] {
     scroll-margin-top: 240px;
 }
+
+@media (max-width: 768px) {
+    section[id] {
+        scroll-margin-top: 300px;
+    }
+}

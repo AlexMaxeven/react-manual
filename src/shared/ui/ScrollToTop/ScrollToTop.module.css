@@ -1,18 +1,30 @@
 .wrapper {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 1000;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+}
+
+.scrollButton {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+  border-radius: 12px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s ease;
+  animation: scrollToTop 1s ease;
+  background: blue;
+}
+
+@keyframes scrollToTop {
+  from {
+    transform: translateY(100%);
   }
-  
-  .scrollButton {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    padding: 0;
-    border-radius: 12px;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  to {
+    transform: translateY(0);
   }
+}
