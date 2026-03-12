@@ -3,6 +3,7 @@ import styles from "./AppLayout.module.css";
 import { Container } from "@/shared/ui";
 import ScrollToTopButton from "@/shared/ui/ScrollToTop/ScrollToTop";
 import useScrollThreshold from "@/shared/lib/useScrollThreshold";
+import { ThemeToggle } from "@/shared/ui";
 
 const AppLayout = () => {
   const isScrolled = useScrollThreshold(100);
@@ -37,6 +38,8 @@ const AppLayout = () => {
           >
             TYPESCRIPT
           </NavLink>
+
+          <ThemeToggle />
         </div>
       </nav>
 
