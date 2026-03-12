@@ -27,6 +27,7 @@
     font-weight: 600;
     width: 1005;
     text-decoration: underline;
+    cursor: pointer;
     /* text-decoration-color: blue; */
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;

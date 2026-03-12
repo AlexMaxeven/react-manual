@@ -6,10 +6,17 @@ import styles from './ManualNav.module.css';
 const ManualNav = ({ title, basePath, items }) => {
   const isScrolled = useScrollThreshold(100);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.topRow}>
-      <div className={`${styles.title} ${isScrolled ? styles.titleHidden : ""}`}>
+      <div className={`${styles.title} ${isScrolled ? styles.titleHidden : ""}`} onClick={scrollToTop}>
         {title}
       </div>
 
