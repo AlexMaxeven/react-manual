@@ -20,7 +20,7 @@
     width: 100%;
     padding: 20px;
     background: var(--bg);
-    transition: all 1s ease;
+    /* transition: all 1s ease; */
 }
 
 .title {
@@ -36,7 +36,7 @@
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
     /* background: blue; */
-    color: white;
+    color: var(--text);
     display: block;
 }
 
@@ -130,7 +130,7 @@
         position: absolute;
         left: 10px;
         top: 10px;
-        color: white;
+        
         background-color: transparent;
     }
 

@@ -18,6 +18,7 @@
   transition: transform 1s ease;
   animation: scrollToTop 1s ease;
   background: blue;
+  color: white;
 }
 
 @keyframes scrollToTop {

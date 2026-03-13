@@ -1,7 +1,7 @@
 .text {
     margin: 0;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--text-secondary);
 }
 
 .list {
@@ -16,7 +16,7 @@
     margin: 10px 0 0;
     font-size: 20px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text);
 }
 
 .note,
@@ -41,7 +41,7 @@
 
 .noteContent {
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--text-secondary);
 }
 
 .warning {
@@ -58,7 +58,7 @@
 
 .warningContent {
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--text-secondary);
 }
 
 .tip {
@@ -75,5 +75,5 @@
 
 .tipContent {
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--text-secondary);
 }
