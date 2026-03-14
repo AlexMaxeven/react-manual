@@ -15,8 +15,29 @@
 .nav_wrapper {
     display: flex;
     gap: 12px;
+    /* opacity: 0; */
     align-items: center;
     justify-content: space-between;
+    /* animation: navFade 1s ease forwards; */
+    transition: all 0.3s ease;
+}
+
+.nav_content{
+    display: flex;
+    background: transparent;
+    border-radius: 2px;
+    border: 1px solid blue;
+    padding: 5px;
+    animation: pulse 2s ease infinite alternate-reverse;
+}
+@keyframes pulse {
+    0% {
+        border: 1px solid transparent;
+    }
+    100% {
+        border: 1px solid blue;
+        box-shadow: 1px 0 10px 0 rgba(0, 18, 156, 0.1);
+    }
 }
 
 .nav {
@@ -38,6 +59,8 @@
     transform: translateY(0);
     pointer-events: auto;
     transition: opacity 0.3s ease, transform 0.3s ease;
+
+    justify-content: space-between;;
 }
 
 .navHidden {
@@ -59,18 +82,20 @@
     text-decoration: none;
     color: inherit;
     opacity: 0.8;
+    transition: all 1s ease;
 }
 
 .link:hover {
     opacity: 1;
+    color: blue;
 }
 
 .linkActive {
     text-decoration: none;
     color: inherit;
-    font-weight: 600;
     opacity: 1;
     color: blue;
+    /* font-weight: 600; */
 }
 
 .main {
@@ -78,18 +103,3 @@
     height: 100%;
     padding-bottom: 8px;
 }
-
-.pageFade {
-    animation: pageFadeIn 2s ease forwards;
-  }
-  
-  @keyframes pageFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }

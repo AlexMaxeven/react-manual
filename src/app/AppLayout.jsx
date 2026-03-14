@@ -11,7 +11,19 @@ const AppLayout = () => {
   return (
     <Container className={styles.root}>
       <nav className={`${styles.nav} ${isScrolled ? styles.navHidden : ""}`}>
-        <div className={styles.nav_wrapper}>
+        
+        <div className={styles.nav_content}>
+          <NavLink 
+            to="/"
+            className={({ isActive }) =>
+              isActive ? styles.linkActive : styles.link
+            }
+          >
+            PRACTICE
+          </NavLink>
+        </div>
+
+        <div className={styles.nav_wrapper} >
           <NavLink
             to="/react"
             className={({ isActive }) =>
@@ -44,7 +56,10 @@ const AppLayout = () => {
       </nav>
 
       <main className={styles.main}>
-        <Outlet />
+       
+          <Outlet />
+
+        
       </main>
 
       <ScrollToTopButton />

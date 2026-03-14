@@ -9,7 +9,6 @@ const ReactManualLayout = () => {
 
     return (
         <div >
-            
             <ManualNav 
                 title="REACT" 
                 basePath="/react" 

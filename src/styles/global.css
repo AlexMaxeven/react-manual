@@ -24,7 +24,11 @@ html {
     flex-direction: column;
     height: 100%;
     position: relative;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
 }
+
+
 
 html,
 body {
