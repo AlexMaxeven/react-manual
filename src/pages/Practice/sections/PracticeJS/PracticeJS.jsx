@@ -104,6 +104,8 @@ const PracticeJS = () => {
             }
         }, [isChecked]);
 
+    const contentAnimationKey = `${activeLevel}-${currentIndex}-${isLevelFinished}`;
+
     return (
         <section className={styles.root}>
         <header className={styles.hero}>
@@ -126,160 +128,164 @@ const PracticeJS = () => {
             ))}
         </div>
 
-        {activeLevel === "level-1" && !isLevelFinished && (
-            <div className={styles.quiz}>
-            <div className={styles.progressHeader}>
-                <span className={styles.progressText}>
-                    Task {currentIndex + 1} / {practiceJavaScriptLevel1Tasks.length}
-                </span>
+        <div key={contentAnimationKey} className={styles.fadeContent}>
+            {activeLevel === "level-1" && !isLevelFinished && (
+                <div className={styles.quiz}>
+                <div className={styles.progressHeader}>
+                    <span className={styles.progressText}>
+                        Task {currentIndex + 1} / {practiceJavaScriptLevel1Tasks.length}
+                    </span>
 
-                <span className={styles.progressText}>
-                    Score: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
-                </span>
-            </div>
+                    <span className={styles.progressText}>
+                        Score: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
+                    </span>
+                </div>
 
-            <div className={styles.progressBar}>
-                <div
-                className={styles.progressBarFill}
-                style={{ width: `${progressPercent}%` }}
-                />
-            </div>
+                <div className={styles.progressBar}>
+                    <div
+                    className={styles.progressBarFill}
+                    style={{ width: `${progressPercent}%` }}
+                    />
+                </div>
 
-            <article className={styles.card}>
-                <h2 className={styles.cardTitle}>Level 1 — Basics Quiz</h2>
-                <p className={styles.question}>{currentTask.question}</p>
+                <article className={styles.card}>
+                    <h2 className={styles.cardTitle}>Level 1 — Basics Quiz</h2>
+                    <p className={styles.question}>{currentTask.question}</p>
 
-                <div className={styles.options}>
-                {currentTask.options.map((option) => {
-                    const isSelected = selectedAnswer === option;
+                    <div className={styles.options}>
+                    {currentTask.options.map((option) => {
+                        const isSelected = selectedAnswer === option;
 
-                    return (
+                        return (
+                        <button
+                            key={option}
+                            type="button"
+                            onClick={() => {
+                            if (isChecked) return;
+                            setSelectedAnswer(option);
+                            }}
+                            className={`${styles.option} ${
+                            isSelected ? styles.optionSelected : ""
+                            }`}
+                        >
+                            {option}
+                        </button>
+                        );
+                    })}
+                    </div>
+
+                    <div className={styles.actions}>
                     <button
-                        key={option}
                         type="button"
-                        onClick={() => {
-                        if (isChecked) return;
-                        setSelectedAnswer(option);
-                        }}
-                        className={`${styles.option} ${
-                        isSelected ? styles.optionSelected : ""
-                        }`}
+                        onClick={handleCheck}
+                        className={styles.actionButton}
+                        disabled={!selectedAnswer || isChecked}
                     >
-                        {option}
+                        Check answer
                     </button>
-                    );
-                })}
+
+                    {!isLastTask ? (
+                        <button
+                            type="button"
+                            onClick={handleNext}
+                            className={`${styles.actionButtonSecondary} ${
+                            isChecked ? styles.actionButtonPulse : ""
+                            }`}
+                            disabled={!isChecked}
+                        >
+                            Next task
+                        </button>
+                        ) : (
+                        <button
+                            type="button"
+                            onClick={handleFinishLevel}
+                            className={`${styles.actionButtonSecondary} ${
+                            isChecked ? styles.actionButtonPulse : ""
+                            }`}
+                            disabled={!isChecked}
+                        >
+                            Finish level
+                        </button>
+                    )}
+                    </div>
+
+                    {isChecked && (
+                        <div ref={resultRef} className={styles.feedbackBlock}>
+                            <div
+                            className={`${styles.result} ${
+                                isCorrect ? styles.resultSuccess : styles.resultError
+                            }`}
+                            >
+                            {isCorrect ? "Correct ✅" : "Incorrect ❌"}
+                            </div>
+
+                            <div className={styles.explanation}>
+                            <strong>Explanation:</strong> {currentTask.explanation}
+                            </div>
+
+                            {!isCorrect && (
+                            <div className={styles.answer}>
+                                <strong>Correct answer:</strong> {currentTask.answer}
+                            </div>
+                            )}
+                        </div>
+                    )}
+                </article>
+                </div>
+            )}
+
+            {activeLevel === "level-1" && isLevelFinished && (
+            <article className={styles.finishCard}>
+                <h2 className={styles.finishTitle}>Level 1 completed</h2>
+
+                <p className={styles.finishText}>
+                Ти завершив базовий рівень JavaScript practice.
+                </p>
+
+                <div className={styles.finishScore}>
+                Result: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
                 </div>
 
                 <div className={styles.actions}>
                 <button
                     type="button"
-                    onClick={handleCheck}
+                    onClick={handleRestart}
                     className={styles.actionButton}
-                    disabled={!selectedAnswer || isChecked}
                 >
-                    Check answer
+                    Restart level
                 </button>
 
-                {!isLastTask ? (
-                    <button
-                        type="button"
-                        onClick={handleNext}
-                        className={`${styles.actionButtonSecondary} ${
-                        isChecked ? styles.actionButtonPulse : ""
-                        }`}
-                        disabled={!isChecked}
-                    >
-                        Next task
-                    </button>
-                    ) : (
-                    <button
-                        type="button"
-                        onClick={handleFinishLevel}
-                        className={`${styles.actionButtonSecondary} ${
-                        isChecked ? styles.actionButtonPulse : ""
-                        }`}
-                        disabled={!isChecked}
-                    >
-                        Finish level
-                    </button>
-                )}
+                <button
+                    type="button"
+                    onClick={handleGoToLevel2}
+                    className={styles.actionButtonSecondary}
+                >
+                    Go to Level 2
+                </button>
                 </div>
-
-                {isChecked && (
-                    <div ref={resultRef} className={styles.feedbackBlock}>
-                        <div
-                        className={`${styles.result} ${
-                            isCorrect ? styles.resultSuccess : styles.resultError
-                        }`}
-                        >
-                        {isCorrect ? "Correct ✅" : "Incorrect ❌"}
-                        </div>
-
-                        <div className={styles.explanation}>
-                        <strong>Explanation:</strong> {currentTask.explanation}
-                        </div>
-
-                        {!isCorrect && (
-                        <div className={styles.answer}>
-                            <strong>Correct answer:</strong> {currentTask.answer}
-                        </div>
-                        )}
-                    </div>
-                )}
             </article>
-            </div>
-        )}
+            )}
 
-        {activeLevel === "level-1" && isLevelFinished && (
-        <article className={styles.finishCard}>
-            <h2 className={styles.finishTitle}>Level 1 completed</h2>
+            {activeLevel === "level-2" && (
+                <article className={styles.placeholder}>
+                <h2 className={styles.placeholderTitle}>Level 2 — Complete the Code</h2>
+                <p className={styles.placeholderText}>
+                    Тут буде рівень, де потрібно доповнювати код, щоб він працював правильно.
+                </p>
+                </article>
+            )}
 
-            <p className={styles.finishText}>
-            Ти завершив базовий рівень JavaScript practice.
-            </p>
+            {activeLevel === "level-3" && (
+                <article className={styles.placeholder}>
+                <h2 className={styles.placeholderTitle}>Level 3 — Write the Code</h2>
+                <p className={styles.placeholderText}>
+                    Тут буде рівень, де потрібно самостійно писати код і проходити перевірку.
+                </p>
+                </article>
+            )}
+        </div>
+        
 
-            <div className={styles.finishScore}>
-            Result: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
-            </div>
-
-            <div className={styles.actions}>
-            <button
-                type="button"
-                onClick={handleRestart}
-                className={styles.actionButton}
-            >
-                Restart level
-            </button>
-
-            <button
-                type="button"
-                onClick={handleGoToLevel2}
-                className={styles.actionButtonSecondary}
-            >
-                Go to Level 2
-            </button>
-            </div>
-        </article>
-        )}
-
-        {activeLevel === "level-2" && (
-            <article className={styles.placeholder}>
-            <h2 className={styles.placeholderTitle}>Level 2 — Complete the Code</h2>
-            <p className={styles.placeholderText}>
-                Тут буде рівень, де потрібно доповнювати код, щоб він працював правильно.
-            </p>
-            </article>
-        )}
-
-        {activeLevel === "level-3" && (
-            <article className={styles.placeholder}>
-            <h2 className={styles.placeholderTitle}>Level 3 — Write the Code</h2>
-            <p className={styles.placeholderText}>
-                Тут буде рівень, де потрібно самостійно писати код і проходити перевірку.
-            </p>
-            </article>
-        )}
         </section>
     );
 };
