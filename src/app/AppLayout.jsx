@@ -14,7 +14,7 @@ const AppLayout = () => {
         
         <div className={styles.nav_content}>
           <NavLink 
-            to="/"
+            to="/practice"
             className={({ isActive }) =>
               isActive ? styles.linkActive : styles.link
             }

@@ -28,6 +28,15 @@ import {
   JsRoadmapPage,
 } from "@/pages/Js";
 
+import {
+  PracticeLayout,
+  PracticeJS,
+  PracticeReact,
+  PracticeTypescript,
+  PracticeOverview,
+} from "@/pages/Practice";
+
+
 export const router = createBrowserRouter(
   [
     {
@@ -72,6 +81,18 @@ export const router = createBrowserRouter(
             { path: "async", element: <JsAsyncPage /> },
             { path: "dome", element: <JsDomePage /> },
             { path: "roadmap", element: <JsRoadmapPage /> },
+          ],
+        },
+
+        {
+          path: "practice",
+          element: <PracticeLayout />,
+          children: [
+            { index: true, element: <Navigate to="overview" replace /> },
+            { path: "overview", element: <PracticeOverview /> },
+            { path: "js", element: <PracticeJS /> },
+            { path: "react", element: <PracticeReact /> },
+            { path: "typescript", element: <PracticeTypescript /> },
           ],
         },
       ],
