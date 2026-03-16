@@ -16,7 +16,9 @@ const ReactOverviewPage = () => {
           </InfoBlock>
         </section>
       ))}
+      
     </div>
+    
   );
 };
 

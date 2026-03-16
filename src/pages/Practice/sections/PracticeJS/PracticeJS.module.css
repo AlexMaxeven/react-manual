@@ -232,58 +232,58 @@
     flex-direction: column;
     gap: 14px;
     scroll-margin-top: 120px;
-  }
-  
-  .actionButtonPulse {
-    animation: pulseButton 1.2s infinite;
-  }
-  
-  @keyframes pulseButton {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(47, 91, 255, 0.35);
-    }
-  
-    70% {
-      transform: scale(1.03);
-      box-shadow: 0 0 0 12px rgba(47, 91, 255, 0);
-    }
-  
-    100% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(47, 91, 255, 0);
-    }
-  }
+}
 
-  .feedbackBlock {
+.actionButtonPulse {
+    animation: pulseButton 1.2s infinite;
+}
+
+@keyframes pulseButton {
+    0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(47, 91, 255, 0.35);
+    }
+
+    70% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 12px rgba(47, 91, 255, 0);
+    }
+
+    100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(47, 91, 255, 0);
+    }
+}
+
+.feedbackBlock {
     display: flex;
     flex-direction: column;
     gap: 14px;
     scroll-margin-top: 120px;
-  }
-  
-  .actionButtonPulse {
+}
+
+.actionButtonPulse {
     animation: pulseButton 1.2s infinite;
-  }
-  
-  @keyframes pulseButton {
+}
+
+@keyframes pulseButton {
     0% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(47, 91, 255, 0.35);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(47, 91, 255, 0.35);
     }
-  
+
     70% {
-      transform: scale(1.03);
-      box-shadow: 0 0 0 12px rgba(47, 91, 255, 0);
+    transform: scale(1.03);
+    box-shadow: 0 0 0 12px rgba(47, 91, 255, 0);
     }
-  
+
     100% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(47, 91, 255, 0);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(47, 91, 255, 0);
     }
-  }
-  
-  .finishCard {
+}
+
+.finishCard {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -291,43 +291,113 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.03);
-  }
-  
-  .finishTitle {
+}
+
+.finishTitle {
     margin: 0;
     font-size: 32px;
     font-weight: 700;
-  }
-  
-  .finishText {
+}
+
+.finishText {
     margin: 0;
     font-size: 17px;
     line-height: 1.7;
     color: var(--color-text-secondary);
-  }
-  
-  .finishScore {
+}
+
+.finishScore {
     font-size: 22px;
     font-weight: 700;
     color: var(--color-accent, #2f5bff);
-  }
+}
 
-  .fadeContent {
+.fadeContent {
     animation: fadeContentIn 0.8s ease;
     will-change: opacity, transform;
-  }
-  
-  @keyframes fadeContentIn {
+}
+
+@keyframes fadeContentIn {
     from {
-      opacity: 0;
-      transform: translateY(10px);
+    opacity: 0;
+    transform: translateY(10px);
     }
-  
+
     to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
     }
-  }
+}
+
+.codeBlock {
+    margin: 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.025);
+    overflow-x: auto;
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.inputWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputLabel {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-secondary, #c9c9c9);
+}
+
+.input {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    color: inherit;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--color-accent, #2f5bff);
+    box-shadow: 0 0 0 3px rgba(47, 91, 255, 0.12);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.textarea {
+    width: 100%;
+    min-height: 220px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    color: inherit;
+    font-size: 15px;
+    line-height: 1.7;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textarea:focus {
+    border-color: var(--color-accent, #2f5bff);
+    box-shadow: 0 0 0 3px rgba(47, 91, 255, 0.12);
+}
+
+.textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
 
 @media (max-width: 768px) {
     .options {
