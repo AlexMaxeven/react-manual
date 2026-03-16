@@ -65,6 +65,7 @@
     flex-wrap: wrap;
     gap: 10px;
     padding: 0 16px 16px;
+    border-bottom: 1px solid var(--border);
 }
 
 .tocLink {
@@ -85,6 +86,6 @@
 
 @media (max-width: 768px) {
     .toc {
-        top: 60px;
+        top: 69px;
     }
 }
