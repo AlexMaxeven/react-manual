@@ -36,6 +36,8 @@ import {
   PracticeOverview,
 } from "@/pages/Practice";
 
+import DelayedRedirect from "@/shared/lib/DelayedRedirect/DelayedRedirect";
+
 
 export const router = createBrowserRouter(
   [
@@ -43,7 +45,10 @@ export const router = createBrowserRouter(
       path: "/",
       element: <AppLayout />,
       children: [
-        { index: true, element: <Navigate to="react" replace /> },
+        {
+          index: true,
+          element: <DelayedRedirect to="/react/overview" delay={5000} />,
+        },
 
         {
           path: "typeScript",

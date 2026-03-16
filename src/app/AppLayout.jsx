@@ -4,9 +4,13 @@ import { Container } from "@/shared/ui";
 import ScrollToTopButton from "@/shared/ui/ScrollToTop/ScrollToTop";
 import useScrollThreshold from "@/shared/lib/useScrollThreshold";
 import { ThemeToggle } from "@/shared/ui";
+import Home from "@/pages/Home/Home";
+import {useLocation} from "react-router-dom";
 
 const AppLayout = () => {
   const isScrolled = useScrollThreshold(100);
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "";
 
   return (
     <Container className={styles.root}>
@@ -54,6 +58,8 @@ const AppLayout = () => {
           <ThemeToggle />
         </div>
       </nav>
+
+      {isHome && <Home />}
 
       <main className={styles.main}>
        
