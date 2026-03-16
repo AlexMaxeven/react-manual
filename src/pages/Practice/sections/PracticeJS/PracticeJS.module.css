@@ -372,14 +372,14 @@
 }
 
 .input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-secondary);
 }
 
 .textarea {
     width: 100%;
     min-height: 220px;
     padding: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--border);
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.02);
     color: inherit;
@@ -396,7 +396,7 @@
 }
 
 .textarea::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {

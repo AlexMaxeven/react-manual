@@ -2,12 +2,16 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import styles from "./PracticeJS.module.css";
 
 import {
-practiceJavaScriptIntro,
-practiceJavaScriptLevels,
-practiceJavaScriptLevel1Tasks,
-practiceJavaScriptLevel2Tasks,
-practiceJavaScriptLevel3Tasks,
+    practiceJavaScriptIntro,
+    practiceJavaScriptLevels,
+    practiceJavaScriptLevel1Tasks,
+    practiceJavaScriptLevel2Tasks,
+    practiceJavaScriptLevel3Tasks,
 } from "@/pages/Practice/data/practiceJS.data";
+
+import Progress from "@/pages/Practice/components/Progress";
+import FeedBack from "@/pages/Practice/components/FeedBack";
+import FinishCard from "@/pages/Practice/components/FinishCard";
 
 const normalize = (value) => value.trim().toLowerCase();
 
@@ -47,12 +51,10 @@ const PracticeJS = () => {
     const isLastTask = currentIndex === practiceJavaScriptLevel1Tasks.length - 1;
 
     const currentLevel2Task = practiceJavaScriptLevel2Tasks[level2Index];
-    const isLastLevel2Task =
-  level2Index === practiceJavaScriptLevel2Tasks.length - 1;
+    const isLastLevel2Task = level2Index === practiceJavaScriptLevel2Tasks.length - 1;
 
-  const currentLevel3Task = practiceJavaScriptLevel3Tasks[level3Index];
-const isLastLevel3Task =
-  level3Index === practiceJavaScriptLevel3Tasks.length - 1;
+    const currentLevel3Task = practiceJavaScriptLevel3Tasks[level3Index];
+    const isLastLevel3Task = level3Index === practiceJavaScriptLevel3Tasks.length - 1;
 
     const isCorrect = useMemo(() => {
         if (!isChecked || !selectedAnswer) return false;
@@ -72,28 +74,28 @@ const isLastLevel3Task =
 
     useEffect(() => {
         if (level2Checked && level2ResultRef.current) {
-          level2ResultRef.current.scrollIntoView({
+        level2ResultRef.current.scrollIntoView({
             behavior: "smooth",
             block: "nearest",
-          });
+        });
         }
-      }, [level2Checked]);
+    }, [level2Checked]);
 
-      useEffect(() => {
+    useEffect(() => {
         if (level3Checked && level3ResultRef.current) {
-          level3ResultRef.current.scrollIntoView({
+        level3ResultRef.current.scrollIntoView({
             behavior: "smooth",
             block: "nearest",
-          });
+        });
         }
-      }, [level3Checked]);
+    }, [level3Checked]);
 
-      const handleLevelChange = (levelId) => {
+    const handleLevelChange = (levelId) => {
         setActiveLevel(levelId);
         resetLevelState();
         resetLevel2State();
         resetLevel3State();
-      };
+    };
 
     const resetLevelState = () => {
         setCurrentIndex(0);
@@ -101,42 +103,42 @@ const isLastLevel3Task =
         setIsChecked(false);
         setCorrectAnswers(0);
         setIsLevelFinished(false);
-      };
+    };
 
-      const resetLevel2State = () => {
+    const resetLevel2State = () => {
         setLevel2Index(0);
         setLevel2Value("");
         setLevel2Checked(false);
         setLevel2CorrectAnswers(0);
         setIsLevel2Finished(false);
         setLevel2IsCorrect(false);
-      };
+    };
 
-      const resetLevel3State = () => {
+    const resetLevel3State = () => {
         setLevel3Index(0);
         setLevel3Value("");
         setLevel3Checked(false);
         setLevel3CorrectAnswers(0);
         setIsLevel3Finished(false);
         setLevel3IsCorrect(false);
-      };
+    };
 
     const handleCheck = () => {
         if (!selectedAnswer || isChecked) return;
-      
+    
         const answerIsCorrect =
-          normalize(selectedAnswer) === normalize(currentTask.answer);
-      
+        normalize(selectedAnswer) === normalize(currentTask.answer);
+    
         if (answerIsCorrect) {
-          setCorrectAnswers((prev) => prev + 1);
+        setCorrectAnswers((prev) => prev + 1);
         }
-      
+    
         setIsChecked(true);
     };
 
     const handleNext = () => {
         if (isLastTask) return;
-      
+    
         setCurrentIndex((prev) => prev + 1);
         setSelectedAnswer("");
         setIsChecked(false);
@@ -145,110 +147,110 @@ const isLastLevel3Task =
     const handleFinishLevel = () => {
         setIsLevelFinished(true);
         window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+        top: 0,
+        behavior: "smooth",
         });
-      };
-      
-      const handleRestart = () => {
+    };
+    
+    const handleRestart = () => {
         resetLevelState();
-      };
-      
-      const handleGoToLevel2 = () => {
+    };
+    
+    const handleGoToLevel2 = () => {
         setActiveLevel("level-2");
         resetLevelState();
         resetLevel2State();
-      };
+    };
 
-      const handleLevel2Check = () => {
+    const handleLevel2Check = () => {
         const preparedValue = level2Value.trim();
-      
+    
         if (!preparedValue || level2Checked) return;
-      
+    
         const answerIsCorrect =
-          normalize(preparedValue) === normalize(currentLevel2Task.answer);
-      
+        normalize(preparedValue) === normalize(currentLevel2Task.answer);
+    
         setLevel2IsCorrect(answerIsCorrect);
-      
+    
         if (answerIsCorrect) {
-          setLevel2CorrectAnswers((prev) => prev + 1);
+        setLevel2CorrectAnswers((prev) => prev + 1);
         }
-      
+    
         setLevel2Checked(true);
-      };
-      
-      const handleLevel2Next = () => {
+    };
+    
+    const handleLevel2Next = () => {
         if (isLastLevel2Task) return;
-      
+    
         setLevel2Index((prev) => prev + 1);
         setLevel2Value("");
         setLevel2Checked(false);
         setLevel2IsCorrect(false);
-      };
-      
-      const handleLevel2Finish = () => {
+    };
+    
+    const handleLevel2Finish = () => {
         setIsLevel2Finished(true);
         window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+        top: 0,
+        behavior: "smooth",
         });
-      };
-      
-      const handleLevel2Restart = () => {
+    };
+    
+    const handleLevel2Restart = () => {
         resetLevel2State();
-      };
-      
-      const handleGoToLevel3 = () => {
+    };
+    
+    const handleGoToLevel3 = () => {
         setActiveLevel("level-3");
         resetLevel2State();
         resetLevel3State();
-      };
+    };
 
-      const handleLevel3Check = () => {
+    const handleLevel3Check = () => {
         const preparedValue = level3Value.trim();
-      
+    
         if (!preparedValue || level3Checked) return;
-      
+    
         const answerIsCorrect = currentLevel3Task.requiredParts.every((part) =>
-          preparedValue.includes(part)
+        preparedValue.includes(part)
         );
-      
+    
         setLevel3IsCorrect(answerIsCorrect);
-      
+    
         if (answerIsCorrect) {
-          setLevel3CorrectAnswers((prev) => prev + 1);
+        setLevel3CorrectAnswers((prev) => prev + 1);
         }
-      
+    
         setLevel3Checked(true);
-      };
-      
-      const handleLevel3Next = () => {
+    };
+    
+    const handleLevel3Next = () => {
         if (isLastLevel3Task) return;
-      
+    
         setLevel3Index((prev) => prev + 1);
         setLevel3Value("");
         setLevel3Checked(false);
         setLevel3IsCorrect(false);
-      };
-      
-      const handleLevel3Finish = () => {
+    };
+    
+    const handleLevel3Finish = () => {
         setIsLevel3Finished(true);
         window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+        top: 0,
+        behavior: "smooth",
         });
-      };
-      
-      const handleLevel3Restart = () => {
+    };
+    
+    const handleLevel3Restart = () => {
         resetLevel3State();
-      };
-      
-      const handleRestartAll = () => {
+    };
+    
+    const handleRestartAll = () => {
         setActiveLevel("level-1");
         resetLevelState();
         resetLevel2State();
         resetLevel3State();
-      };
+    };
 
     const progressPercent =
         ((currentIndex + 1) / practiceJavaScriptLevel1Tasks.length) * 100;
@@ -280,22 +282,13 @@ const isLastLevel3Task =
         <div key={contentAnimationKey} className={styles.fadeContent}>
             {activeLevel === "level-1" && !isLevelFinished && (
                 <div className={styles.quiz}>
-                <div className={styles.progressHeader}>
-                    <span className={styles.progressText}>
-                        Task {currentIndex + 1} / {practiceJavaScriptLevel1Tasks.length}
-                    </span>
+                <Progress
+                    current={currentIndex}
+                    total={practiceJavaScriptLevel1Tasks.length}
+                    score={correctAnswers}
+                />
 
-                    <span className={styles.progressText}>
-                        Score: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
-                    </span>
-                </div>
-
-                <div className={styles.progressBar}>
-                    <div
-                    className={styles.progressBarFill}
-                    style={{ width: `${progressPercent}%` }}
-                    />
-                </div>
+                
 
                 <article className={styles.card}>
                     <h2 className={styles.cardTitle}>Level 1 — Basics Quiz</h2>
@@ -359,84 +352,39 @@ const isLastLevel3Task =
                     </div>
 
                     {isChecked && (
-                        <div ref={resultRef} className={styles.feedbackBlock}>
-                            <div
-                            className={`${styles.result} ${
-                                isCorrect ? styles.resultSuccess : styles.resultError
-                            }`}
-                            >
-                            {isCorrect ? "Correct ✅" : "Incorrect ❌"}
-                            </div>
-
-                            <div className={styles.explanation}>
-                            <strong>Explanation:</strong> {currentTask.explanation}
-                            </div>
-
-                            {!isCorrect && (
-                            <div className={styles.answer}>
-                                <strong>Correct answer:</strong> {currentTask.answer}
-                            </div>
-                            )}
-                        </div>
+                        <FeedBack
+                            resultRef={resultRef}
+                            isCorrect={isCorrect}
+                            explanation={currentTask.explanation}
+                            answerValue={currentTask.answer}
+                        />
                     )}
                 </article>
                 </div>
             )}
 
             {activeLevel === "level-1" && isLevelFinished && (
-            <article className={styles.finishCard}>
-                <h2 className={styles.finishTitle}>Level 1 completed</h2>
-
-                <p className={styles.finishText}>
-                Ти завершив базовий рівень JavaScript practice.
-                </p>
-
-                <div className={styles.finishScore}>
-                Result: {correctAnswers} / {practiceJavaScriptLevel1Tasks.length}
-                </div>
-
-                <div className={styles.actions}>
-                <button
-                    type="button"
-                    onClick={handleRestart}
-                    className={styles.actionButton}
-                >
-                    Restart level
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleGoToLevel2}
-                    className={styles.actionButtonSecondary}
-                >
-                    Go to Level 2
-                </button>
-                </div>
-            </article>
+                <FinishCard
+                    title="Level 1 completed"
+                    text="Ти завершив базовий рівень JavaScript practice."
+                    result={correctAnswers}
+                    total={practiceJavaScriptLevel1Tasks.length}
+                    primaryText="Restart level"
+                    primaryAction={handleRestart}
+                    secondaryText="Go to Level 2"
+                    secondaryAction={handleGoToLevel2}
+                />
             )}
 
             {activeLevel === "level-2" && !isLevel2Finished && (
             <div className={styles.quiz}>
-                <div className={styles.progressHeader}>
-                <span className={styles.progressText}>
-                    Task {level2Index + 1} / {practiceJavaScriptLevel2Tasks.length}
-                </span>
-
-                <span className={styles.progressText}>
-                    Score: {level2CorrectAnswers} / {practiceJavaScriptLevel2Tasks.length}
-                </span>
-                </div>
-
-                <div className={styles.progressBar}>
-                <div
-                    className={styles.progressBarFill}
-                    style={{
-                    width: `${
-                        ((level2Index + 1) / practiceJavaScriptLevel2Tasks.length) * 100
-                    }%`,
-                    }}
+                <Progress
+                    current={level2Index}
+                    total={practiceJavaScriptLevel2Tasks.length}
+                    score={level2CorrectAnswers}
                 />
-                </div>
+
+               
 
                 <article className={styles.card}>
                 <h2 className={styles.cardTitle}>Level 2 — Complete the Code</h2>
@@ -502,84 +450,39 @@ const isLastLevel3Task =
                 </div>
 
                 {level2Checked && (
-                    <div ref={level2ResultRef} className={styles.feedbackBlock}>
-                    <div
-                        className={`${styles.result} ${
-                            level2IsCorrect ? styles.resultSuccess : styles.resultError
-                        }`}
-                    >
-                        {level2IsCorrect ? "Correct ✅" : "Incorrect ❌"}
-                    </div>
-
-                    <div className={styles.explanation}>
-                        <strong>Explanation:</strong> {currentLevel2Task.explanation}
-                    </div>
-
-                    {!level2IsCorrect && (
-                        <div className={styles.answer}>
-                            <strong>Correct answer:</strong> {currentLevel2Task.answer}
-                        </div>
-                    )}
-                    </div>
+                    <FeedBack
+                        resultRef={level2ResultRef}
+                        isCorrect={level2IsCorrect}
+                        explanation={currentLevel2Task.explanation}
+                        answerValue={currentLevel2Task.answer}
+                    />
                 )}
                 </article>
             </div>
             )}
 
             {activeLevel === "level-2" && isLevel2Finished && (
-            <article className={styles.finishCard}>
-                <h2 className={styles.finishTitle}>Level 2 completed</h2>
-
-                <p className={styles.finishText}>
-                Ти завершив рівень Complete the Code у JavaScript practice.
-                </p>
-
-                <div className={styles.finishScore}>
-                Result: {level2CorrectAnswers} / {practiceJavaScriptLevel2Tasks.length}
-                </div>
-
-                <div className={styles.actions}>
-                <button
-                    type="button"
-                    onClick={handleLevel2Restart}
-                    className={styles.actionButton}
-                >
-                    Restart level
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleGoToLevel3}
-                    className={styles.actionButtonSecondary}
-                >
-                    Go to Level 3
-                </button>
-                </div>
-            </article>
+                <FinishCard
+                    title="Level 2 completed"
+                    text="Ти завершив рівень Complete the Code у JavaScript practice."
+                    result={level2CorrectAnswers}
+                    total={practiceJavaScriptLevel2Tasks.length}
+                    primaryText="Restart level"
+                    primaryAction={handleLevel2Restart}
+                    secondaryText="Go to Level 3"
+                    secondaryAction={handleGoToLevel3}
+                />
             )}
 
             {activeLevel === "level-3" && !isLevel3Finished && (
             <div className={styles.quiz}>
-                <div className={styles.progressHeader}>
-                <span className={styles.progressText}>
-                    Task {level3Index + 1} / {practiceJavaScriptLevel3Tasks.length}
-                </span>
-
-                <span className={styles.progressText}>
-                    Score: {level3CorrectAnswers} / {practiceJavaScriptLevel3Tasks.length}
-                </span>
-                </div>
-
-                <div className={styles.progressBar}>
-                <div
-                    className={styles.progressBarFill}
-                    style={{
-                    width: `${
-                        ((level3Index + 1) / practiceJavaScriptLevel3Tasks.length) * 100
-                    }%`,
-                    }}
+                <Progress
+                    current={level3Index}
+                    total={practiceJavaScriptLevel3Tasks.length}
+                    score={level3CorrectAnswers}
                 />
-                </div>
+
+                
 
                 <article className={styles.card}>
                 <h2 className={styles.cardTitle}>Level 3 — Write the Code</h2>
@@ -639,61 +542,29 @@ const isLastLevel3Task =
                 </div>
 
                 {level3Checked && (
-                    <div ref={level3ResultRef} className={styles.feedbackBlock}>
-                    <div
-                        className={`${styles.result} ${
-                        level3IsCorrect ? styles.resultSuccess : styles.resultError
-                        }`}
-                    >
-                        {level3IsCorrect ? "Correct ✅" : "Incorrect ❌"}
-                    </div>
-
-                    <div className={styles.explanation}>
-                        <strong>Explanation:</strong> {currentLevel3Task.explanation}
-                    </div>
-
-                    {!level3IsCorrect && (
-                        <div className={styles.answer}>
-                        <strong>Expected parts:</strong>{" "}
-                        {currentLevel3Task.requiredParts.join(", ")}
-                        </div>
-                    )}
-                    </div>
+                    <FeedBack
+                        resultRef={level3ResultRef}
+                        isCorrect={level3IsCorrect}
+                        explanation={currentLevel3Task.explanation}
+                        answerLabel="Expected parts:"
+                        answerValue={currentLevel3Task.requiredParts.join(", ")}
+                    />
                 )}
                 </article>
             </div>
             )}
 
             {activeLevel === "level-3" && isLevel3Finished && (
-            <article className={styles.finishCard}>
-                <h2 className={styles.finishTitle}>JavaScript Practice completed</h2>
-
-                <p className={styles.finishText}>
-                Ти завершив усі 3 рівні JavaScript practice.
-                </p>
-
-                <div className={styles.finishScore}>
-                Result: {level3CorrectAnswers} / {practiceJavaScriptLevel3Tasks.length}
-                </div>
-
-                <div className={styles.actions}>
-                <button
-                    type="button"
-                    onClick={handleLevel3Restart}
-                    className={styles.actionButton}
-                >
-                    Restart level
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleRestartAll}
-                    className={styles.actionButtonSecondary}
-                >
-                    Restart all practice
-                </button>
-                </div>
-            </article>
+                <FinishCard
+                    title="JavaScript Practice completed"
+                    text="Ти завершив усі 3 рівні JavaScript practice."
+                    result={level3CorrectAnswers}
+                    total={practiceJavaScriptLevel3Tasks.length}
+                    primaryText="Restart level"
+                    primaryAction={handleLevel3Restart}
+                    secondaryText="Restart all practice"
+                    secondaryAction={handleRestartAll}
+                />
             )}
         </div>
         

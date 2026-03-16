@@ -4,4 +4,5 @@ export const reactNav = [
   { to: "hooks", label: "Hooks" },
   { to: "routing", label: "Routing" },
   { to: "roadmap", label: "Roadmap" },
+  { to: "practice", label: "PRACTICE" },
 ];

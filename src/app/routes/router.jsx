@@ -60,6 +60,7 @@ export const router = createBrowserRouter(
             { path: "interfaces", element: <TypeScriptInterfacesPage /> },
             { path: "generics", element: <TypeScriptGenericsPage /> },
             { path: "roadmap", element: <TypeScriptRoadmapPage /> },
+            { path: "practice", element: <PracticeTypescript /> },
           ],
         },
 
@@ -73,6 +74,7 @@ export const router = createBrowserRouter(
             { path: "hooks", element: <ReactHooksPage /> },
             { path: "routing", element: <ReactRoutingPage /> },
             { path: "roadmap", element: <ReactRoadMapPage /> },
+            { path: "practice", element: <PracticeReact /> },
           ],
         },
 
@@ -86,6 +88,7 @@ export const router = createBrowserRouter(
             { path: "async", element: <JsAsyncPage /> },
             { path: "dome", element: <JsDomePage /> },
             { path: "roadmap", element: <JsRoadmapPage /> },
+            { path: "practice", element: <PracticeJS /> },
           ],
         },
 
