@@ -133,7 +133,7 @@
 .option:hover {
     transform: translateY(-1px);
     border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: 0 0 6px 0 blue;
+    box-shadow: 0 0 6px 0 var(--blue);
 }
 
 .optionSelected {

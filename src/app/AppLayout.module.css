@@ -97,14 +97,14 @@
 
 .link:hover {
     opacity: 1;
-    color: blue;
+    color: var(--blue);
 }
 
 .linkActive {
     text-decoration: none;
     color: inherit;
     opacity: 1;
-    color: blue;
+    color: var(--blue);
     font-weight: 600;
 }
 

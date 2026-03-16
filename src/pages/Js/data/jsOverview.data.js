@@ -349,7 +349,7 @@ const jsOverviewSections = [
         },
         {
           type: "code",
-          content: `const colors = ["red", "green", "blue"];
+          content: `const colors = ["red", "green", "var(--blue)"];
   
   const [first, second] = colors;`,
         },
