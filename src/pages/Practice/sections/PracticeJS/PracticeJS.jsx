@@ -133,7 +133,10 @@ const PracticeJS = () => {
                                 className={`${styles.actionButtonSecondary} ${
                                     level1.checked ? styles.actionButtonPulse : ""
                                 }`}
-                            >Next task</button>
+                                disabled={!level1.checked}
+                            >
+                                Next task
+                            </button>
                         ) : (
                             <button
                                 type="button"
@@ -141,7 +144,9 @@ const PracticeJS = () => {
                                 className={`${styles.actionButtonSecondary} ${
                                     level1.checked ? styles.actionButtonPulse : ""
                                 }`}
-                            >Finish level</button>
+                            >
+                                Finish level
+                            </button>
                         )}
                     </div>
 
