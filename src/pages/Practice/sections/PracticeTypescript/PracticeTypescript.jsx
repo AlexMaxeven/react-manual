@@ -13,6 +13,7 @@ import {
         <PracticeTemplate
         intro={practiceTypeScriptIntro}
         levels={practiceTypeScriptLevels}
+        storageKey="practice-typescript-progress"
         level1Tasks={practiceTypeScriptLevel1Tasks}
         level2Tasks={practiceTypeScriptLevel2Tasks}
         level3Tasks={practiceTypeScriptLevel3Tasks}

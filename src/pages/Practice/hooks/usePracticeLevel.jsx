@@ -2,13 +2,19 @@ import { useEffect, useRef, useState } from "react";
 
 const normalize = (value) => value.trim().toLowerCase();
 
-const usePracticeLevel = ({ tasks, mode = "exact", getExpectedParts }) => {
-    const [index, setIndex] = useState(0);
-    const [value, setValue] = useState("");
-    const [checked, setChecked] = useState(false);
-    const [correctAnswers, setCorrectAnswers] = useState(0);
-    const [isFinished, setIsFinished] = useState(false);
-    const [isCorrect, setIsCorrect] = useState(false);
+const usePracticeLevel = ({ 
+    tasks, 
+    mode = "exact", 
+    getExpectedParts,
+    initialState, 
+}) => {
+    const [index, setIndex] = useState(initialState?.index ?? 0);
+    const [value, setValue] = useState(initialState?.value ?? "");
+    const [values, setValues] = useState(initialState?.values ?? {});
+    const [checked, setChecked] = useState(initialState?.checked ?? false);
+    const [correctAnswers, setCorrectAnswers] = useState(initialState?.correctAnswers ?? 0);
+    const [isFinished, setIsFinished] = useState(initialState?.isFinished ?? false);
+    const [isCorrect, setIsCorrect] = useState(initialState?.isCorrect ?? false);
 
     const resultRef = useRef(null);
 
@@ -27,31 +33,74 @@ const usePracticeLevel = ({ tasks, mode = "exact", getExpectedParts }) => {
     const reset = () => {
         setIndex(0);
         setValue("");
+        setValues({});
         setChecked(false);
         setCorrectAnswers(0);
         setIsFinished(false);
         setIsCorrect(false);
     };
 
-    const checkAnswer = () => {
-        const preparedValue = value.trim();
+    const setBlankValue = (blankId, blankValue) => {
+        if (checked) return;
 
-        if (!preparedValue || checked) return;
+        setValues((prev) => ({
+        ...prev,
+        [blankId]: blankValue,
+        }));
+    };
+
+    const clearBlankValue = (blankId) => {
+        if (checked) return;
+
+        setValues((prev) => ({
+        ...prev,
+        [blankId]: "",
+        }));
+    };
+
+    const fillNextBlank = (optionValue) => {
+        if (checked || !currentTask?.blanks?.length) return;
+
+        const nextBlank = currentTask.blanks.find((blank) => !values[blank.id]);
+
+        if (!nextBlank) return;
+
+        setValues((prev) => ({
+        ...prev,
+        [nextBlank.id]: optionValue,
+        }));
+    };
+
+    const checkAnswer = () => {
+        if (checked) return;
 
         let answerIsCorrect = false;
 
         if (mode === "exact") {
+        const preparedValue = value.trim();
+
+        if (!preparedValue) return;
+
         answerIsCorrect =
             normalize(preparedValue) === normalize(currentTask.answer);
         }
 
         if (mode === "includes") {
-        const expectedParts = getExpectedParts
-            ? getExpectedParts(currentTask)
-            : [];
+        const expectedParts = getExpectedParts ? getExpectedParts(currentTask) : [];
+        const preparedValue = value.trim();
+
+        if (!preparedValue) return;
 
         answerIsCorrect = expectedParts.every((part) =>
             preparedValue.includes(part)
+        );
+        }
+
+        if (mode === "blanks") {
+        if (!currentTask?.blanks?.length) return;
+
+        answerIsCorrect = currentTask.blanks.every(
+            (blank) => values[blank.id] === blank.correct
         );
         }
 
@@ -69,6 +118,7 @@ const usePracticeLevel = ({ tasks, mode = "exact", getExpectedParts }) => {
 
         setIndex((prev) => prev + 1);
         setValue("");
+        setValues({});
         setChecked(false);
         setIsCorrect(false);
     };
@@ -84,6 +134,7 @@ const usePracticeLevel = ({ tasks, mode = "exact", getExpectedParts }) => {
     return {
         index,
         value,
+        values,
         checked,
         correctAnswers,
         isFinished,
@@ -92,10 +143,22 @@ const usePracticeLevel = ({ tasks, mode = "exact", getExpectedParts }) => {
         currentTask,
         isLastTask,
         setValue,
+        setBlankValue,
+        clearBlankValue,
+        fillNextBlank,
         checkAnswer,
         next,
         finish,
         reset,
+        stateSnapshot: {
+            index,
+            value,
+            values,
+            checked,
+            correctAnswers,
+            isFinished,
+            isCorrect,
+        }
     };
 };
 

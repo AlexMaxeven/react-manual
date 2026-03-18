@@ -203,74 +203,145 @@ export const practiceReactLevel2Tasks = [
 ];
 
 export const practiceReactLevel3Tasks = [
-    {
+  {
     id: 1,
-    question: "Напиши React component Counter, який рендерить заголовок Counter.",
-    requiredParts: ["function Counter", "return", "<h1>Counter</h1>"],
-    explanation:
-        "Компонент має бути функцією і повертати JSX із заголовком Counter.",
-    },
-    {
+    question: "Доповни оголошення змінної age типу number.",
+    template: `let age: ___ = 25;`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "number",
+        options: ["number", "string", "boolean"],
+      },
+    ],
+    explanation: "Змінна age має тип number.",
+  },
+  {
     id: 2,
-    question: "Напиши component Greeting, який приймає props і рендерить props.name.",
-    requiredParts: ["function Greeting", "props", "props.name", "return"],
-    explanation:
-        "Компонент має отримувати props і відображати props.name у JSX.",
-    },
-    {
+    question: "Доповни оголошення змінної name типу string.",
+    template: `let name: ___ = "Alex";`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "string",
+        options: ["string", "number", "boolean"],
+      },
+    ],
+    explanation: "Для тексту використовується тип string.",
+  },
+  {
     id: 3,
-    question: "Напиши component Button, який рендерить кнопку з текстом Click.",
-    requiredParts: ["function Button", "return", "<button>", "Click"],
-    explanation:
-        "Компонент має повертати JSX із кнопкою і текстом Click.",
-    },
-    {
+    question: "Доповни функцію, яка нічого не повертає.",
+    template: `function logMessage(): ___ {
+  console.log("Hello");
+}`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "void",
+        options: ["void", "string", "number"],
+      },
+    ],
+    explanation: "Якщо функція нічого не повертає, використовується void.",
+  },
+  {
     id: 4,
-    question: "Напиши component Title, який рендерить h2 з текстом React.",
-    requiredParts: ["function Title", "return", "<h2>", "React"],
-    explanation:
-        "Компонент має повертати JSX із заголовком h2 і текстом React.",
-    },
-    {
+    question: "Доповни тип масиву чисел.",
+    template: `let list: ___ = [1, 2, 3];`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "number[]",
+        options: ["number[]", "string[]", "Array"],
+      },
+    ],
+    explanation: "Масив чисел записується як number[].",
+  },
+  {
     id: 5,
-    question: "Напиши component InputField, який рендерить input.",
-    requiredParts: ["function InputField", "return", "<input"],
-    explanation:
-        "Компонент має повертати JSX із полем input.",
-    },
-    {
+    question: "Доповни interface User.",
+    template: `interface User {
+  name: ___;
+}`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "string",
+        options: ["string", "number", "boolean"],
+      },
+    ],
+    explanation: "Поле name в interface User має тип string.",
+  },
+  {
     id: 6,
-    question: "Напиши component App, який рендерить компонент Header.",
-    requiredParts: ["function App", "return", "<Header />"],
-    explanation:
-        "Компонент App має повертати JSX, усередині якого рендериться Header.",
-    },
-    {
+    question: "Доповни union type.",
+    template: `let id: string ___ number;`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "|",
+        options: ["|", "&", ":"],
+      },
+    ],
+    explanation: "Union type використовує оператор |.",
+  },
+  {
     id: 7,
-    question: "Напиши component List, який рендерить ul.",
-    requiredParts: ["function List", "return", "<ul>"],
-    explanation:
-        "Компонент має повертати JSX із тегом ul.",
-    },
-    {
+    question: "Доповни змінну з типом boolean.",
+    template: `let isActive: ___ = true;`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "boolean",
+        options: ["boolean", "string", "number"],
+      },
+    ],
+    explanation: "Тип для true/false — boolean.",
+  },
+  {
     id: 8,
-    question: "Напиши component Card, який рендерить div з текстом Card.",
-    requiredParts: ["function Card", "return", "<div>", "Card"],
-    explanation:
-        "Компонент має повертати JSX із div і текстом Card.",
-    },
-    {
+    question: "Доповни змінну з типом any.",
+    template: `let data: ___;`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "any",
+        options: ["any", "unknown", "void"],
+      },
+    ],
+    explanation: "Тип any дозволяє будь-яке значення.",
+  },
+  {
     id: 9,
-    question: "Напиши component Loader, який умовно рендерить p з текстом Loading.",
-    requiredParts: ["function Loader", "return", "Loading"],
-    explanation:
-        "Компонент має повертати JSX, у якому є текст Loading.",
-    },
-    {
+    question: "Доповни функцію sum.",
+    template: `function sum(a: number, b: number): ___ {
+  return a + b;
+}`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "number",
+        options: ["number", "string", "void"],
+      },
+    ],
+    explanation: "Функція sum повертає число, тому тип return — number.",
+  },
+  {
     id: 10,
-    question: "Напиши component Message, який рендерить абзац з текстом Hello React.",
-    requiredParts: ["function Message", "return", "<p>", "Hello React"],
-    explanation:
-        "Компонент має бути функцією і повертати JSX із абзацом Hello React.",
-    },
+    question: "Доповни змінну id з union типом.",
+    template: `let id: ___ | ___ = 10;`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "string",
+        options: ["string", "boolean", "void"],
+      },
+      {
+        id: "b2",
+        correct: "number",
+        options: ["number", "any", "null"],
+      },
+    ],
+    explanation: "Union type дозволяє id бути string або number.",
+  },
 ];

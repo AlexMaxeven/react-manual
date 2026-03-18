@@ -399,6 +399,126 @@
     color: var(--text-secondary);
 }
 
+.select {
+    display: inline-block;
+    min-width: 90px;
+    margin: 0 6px;
+    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: inherit;
+    font-size: 14px;
+    outline: none;
+    vertical-align: middle;
+  }
+  
+  .select:focus {
+    border-color: var(--color-accent, #2f5bff);
+    box-shadow: 0 0 0 3px rgba(47, 91, 255, 0.12);
+  }
+
+  .blankButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    min-height: 34px;
+    margin: 0 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  
+  .blankEmpty {
+    opacity: 0.8;
+  }
+  
+  .blankFilled {
+    border-style: solid;
+    border-color: var(--color-accent, #2f5bff);
+    background: rgba(47, 91, 255, 0.08);
+  }
+  
+  .optionsPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .optionsLabel {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .optionsChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .optionChip {
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .optionChip:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+  
+  .optionChip:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .optionChipUsed {
+    opacity: 0.45;
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .utilityRow {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .resetProgressButton {
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--color-accent);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .resetProgressButton:hover {
+    transform: translateY(-1px);
+    border-color: var(--color-accent);
+  }
+  
+  .resetProgressButton:active {
+    transform: translateY(0);
+  }
+
 @media (max-width: 768px) {
     .options {
     grid-template-columns: 1fr;

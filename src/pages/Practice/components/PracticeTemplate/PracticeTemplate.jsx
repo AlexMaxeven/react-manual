@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import styles from "./PracticeTemplate.module.css";
 
 import Progress from "@/pages/Practice/components/Progress";
@@ -12,6 +12,7 @@ const PracticeTemplate = ({
     level1Tasks,
     level2Tasks,
     level3Tasks,
+    storageKey,   
     level1Title,
     level2Title,
     level3Title,
@@ -22,22 +23,36 @@ const PracticeTemplate = ({
     level2FinishText,
     level3FinishText,
     }) => {
-    const [activeLevel, setActiveLevel] = useState("level-1");
+
+        const savedState = useMemo(() => {
+            if (!storageKey) return null;
+          
+            try {
+              const raw = localStorage.getItem(storageKey);
+              return raw ? JSON.parse(raw) : null;
+            } catch {
+              return null;
+            }
+          }, [storageKey]);
+
+    const [activeLevel, setActiveLevel] = useState(savedState?.activeLevel ?? "level-1");
 
     const level1 = usePracticeLevel({
         tasks: level1Tasks,
         mode: "exact",
+        initialState: savedState?.level1 ?? null,
     });
 
     const level2 = usePracticeLevel({
         tasks: level2Tasks,
         mode: "exact",
+        initialState: savedState?.level2 ?? null,
     });
 
     const level3 = usePracticeLevel({
         tasks: level3Tasks,
-        mode: "includes",
-        getExpectedParts: (task) => task.requiredParts,
+        mode: "blanks",
+        initialState: savedState?.level3 ?? null,
     });
 
     const resetLevels = (...items) => {
@@ -62,6 +77,62 @@ const PracticeTemplate = ({
     const handleRestartAll = () => {
         setActiveLevel("level-1");
         resetLevels(level1, level2, level3);
+    };
+
+    const handleClearSavedProgress = () => {
+        if (storageKey) {
+          localStorage.removeItem(storageKey);
+        }
+      
+        setActiveLevel("level-1");
+        resetLevels(level1, level2, level3);
+      };
+
+    useEffect(() => {
+        if (!storageKey) return;
+      
+        const payload = {
+          activeLevel,
+          level1: level1.stateSnapshot,
+          level2: level2.stateSnapshot,
+          level3: level3.stateSnapshot,
+        };
+      
+        localStorage.setItem(storageKey, JSON.stringify(payload));
+      }, [
+        storageKey,
+        activeLevel,
+        level1.stateSnapshot,
+        level2.stateSnapshot,
+        level3.stateSnapshot,
+      ]);
+
+    const renderTemplateWithBlanks = (task, level) => {
+        const parts = task.template.split("___");
+      
+        return parts.map((part, index) => {
+          const blank = task.blanks[index];
+          const blankValue = blank ? level.values[blank.id] : "";
+      
+          return (
+            <span key={index}>
+              {part}
+      
+              {blank && (
+                <button
+                  type="button"
+                  onClick={() => level.clearBlankValue(blank.id)}
+                  disabled={level.checked}
+                  className={`${styles.blankButton} ${
+                    blankValue ? styles.blankFilled : styles.blankEmpty
+                  }`}
+                >
+                  {blankValue || "___"}
+                </button>
+              )}
+            </span>
+          );
+        });
     };
 
     const contentAnimationKey = `${activeLevel}-${level1.index}-${level2.index}-${level3.index}-${level1.isFinished}-${level2.isFinished}-${level3.isFinished}`;
@@ -266,98 +337,118 @@ const PracticeTemplate = ({
 
     const renderLevel3 = () => {
         if (level3.isFinished) {
-        return (
+          return (
             <FinishCard
-            title={level3FinishTitle}
-            text={level3FinishText}
-            result={level3.correctAnswers}
-            total={level3Tasks.length}
-            primaryText="Restart level"
-            primaryAction={level3.reset}
-            secondaryText="Restart all practice"
-            secondaryAction={handleRestartAll}
+              title={level3FinishTitle}
+              text={level3FinishText}
+              result={level3.correctAnswers}
+              total={level3Tasks.length}
+              primaryText="Restart level"
+              primaryAction={level3.reset}
+              secondaryText="Restart all practice"
+              secondaryAction={handleRestartAll}
             />
-        );
+          );
         }
-
+      
+        const allBlanksFilled =
+          level3.currentTask?.blanks?.length > 0 &&
+          level3.currentTask.blanks.every((blank) => level3.values[blank.id]);
+      
+        const flatOptions = [
+          ...new Set(level3.currentTask.blanks.flatMap((blank) => blank.options)),
+        ];
+      
         return (
-        <div className={styles.quiz}>
+          <div className={styles.quiz}>
             <Progress
-            current={level3.index}
-            total={level3Tasks.length}
-            score={level3.correctAnswers}
+              current={level3.index}
+              total={level3Tasks.length}
+              score={level3.correctAnswers}
             />
-
+      
             <article className={styles.card}>
-            <h2 className={styles.cardTitle}>{level3Title}</h2>
-            <p className={styles.question}>{level3.currentTask.question}</p>
+              <h2 className={styles.cardTitle}>{level3Title}</h2>
+              <p className={styles.question}>{level3.currentTask.question}</p>
+      
+              <pre className={styles.codeBlock}>
+                <code>{renderTemplateWithBlanks(level3.currentTask, level3)}</code>
+              </pre>
+      
+              <div className={styles.optionsPanel}>
+                <p className={styles.optionsLabel}>Choose values:</p>
+      
+                <div className={styles.optionsChips}>
+                {flatOptions.map((option) => {
+                    const isUsed = Object.values(level3.values).includes(option);
 
-            <div className={styles.inputWrap}>
-                <label htmlFor="level3-answer" className={styles.inputLabel}>
-                Your code
-                </label>
-
-                <textarea
-                id="level3-answer"
-                value={level3.value}
-                onChange={(e) => {
-                    if (level3.checked) return;
-                    level3.setValue(e.target.value);
-                }}
-                placeholder="Write your code here..."
-                className={styles.textarea}
-                spellCheck={false}
-                />
-            </div>
-
-            <div className={styles.actions}>
+                    return (
+                        <button
+                        key={option}
+                        type="button"
+                        onClick={() => level3.fillNextBlank(option)}
+                        disabled={level3.checked}
+                        className={`${styles.optionChip} ${
+                            isUsed ? styles.optionChipUsed : ""
+                        }`}
+                        >
+                        {option}
+                        </button>
+                    );
+                })}
+                </div>
+              </div>
+      
+              <div className={styles.actions}>
                 <button
-                type="button"
-                onClick={level3.checkAnswer}
-                className={styles.actionButton}
-                disabled={!level3.value.trim() || level3.checked}
+                  type="button"
+                  onClick={level3.checkAnswer}
+                  className={styles.actionButton}
+                  disabled={!allBlanksFilled || level3.checked}
                 >
-                Check answer
+                  Check answer
                 </button>
-
+      
                 {!level3.isLastTask ? (
-                <button
+                  <button
                     type="button"
                     onClick={level3.next}
                     className={`${styles.actionButtonSecondary} ${
-                    level3.checked ? styles.actionButtonPulse : ""
+                      level3.checked ? styles.actionButtonPulse : ""
                     }`}
                     disabled={!level3.checked}
-                >
+                  >
                     Next task
-                </button>
+                  </button>
                 ) : (
-                <button
+                  <button
                     type="button"
                     onClick={level3.finish}
                     className={`${styles.actionButtonSecondary} ${
-                    level3.checked ? styles.actionButtonPulse : ""
+                      level3.checked ? styles.actionButtonPulse : ""
                     }`}
                     disabled={!level3.checked}
-                >
+                  >
                     Finish level
-                </button>
+                  </button>
                 )}
-            </div>
-
-            {level3.checked && (
+              </div>
+      
+              {level3.checked && (
                 <FeedBack
-                resultRef={level3.resultRef}
-                isCorrect={level3.isCorrect}
-                explanation={level3.currentTask.explanation}
-                answerLabel="Expected parts:"
-                answerValue={level3.currentTask.requiredParts.join(", ")}
+                  resultRef={level3.resultRef}
+                  isCorrect={level3.isCorrect}
+                  explanation={level3.currentTask.explanation}
+                  answerLabel="Correct answers:"
+                  answerValue={level3.currentTask.blanks
+                    .map((blank) => blank.correct)
+                    .join(", ")}
                 />
-            )}
+              )}
             </article>
-        </div>
+          </div>
         );
-    };
+      };
 
     return (
         <section className={styles.root}>
@@ -381,7 +472,18 @@ const PracticeTemplate = ({
             ))}
         </div>
 
+        <div className={styles.utilityRow}>
+            <button
+                type="button"
+                onClick={handleClearSavedProgress}
+                className={styles.resetProgressButton}
+            >
+                Reset saved progress
+            </button>
+        </div>
+
         <div key={contentAnimationKey} className={styles.fadeContent}>
+            
             {activeLevel === "level-1" && renderLevel1()}
             {activeLevel === "level-2" && renderLevel2()}
             {activeLevel === "level-3" && renderLevel3()}

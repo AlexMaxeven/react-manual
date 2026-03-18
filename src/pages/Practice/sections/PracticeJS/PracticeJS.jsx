@@ -12,6 +12,7 @@ const PracticeJS = () => {
   return (
     <PracticeTemplate
       intro={practiceJavaScriptIntro}
+      storageKey="practice-js-progress"
       levels={practiceJavaScriptLevels}
       level1Tasks={practiceJavaScriptLevel1Tasks}
       level2Tasks={practiceJavaScriptLevel2Tasks}

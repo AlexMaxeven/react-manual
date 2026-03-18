@@ -194,63 +194,144 @@ export const practiceTypeScriptLevel2Tasks = [
 
 export const practiceTypeScriptLevel3Tasks = [
     {
-    id: 1,
-    question: "Напиши змінну age типу number.",
-    requiredParts: ["let", "age", "number"],
-    explanation: "Потрібно оголосити змінну age з типом number.",
+      id: 1,
+      question: "Доповни оголошення змінної age типу number.",
+      template: `let age: ___ = 25;`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "number",
+          options: ["number", "string", "boolean"],
+        },
+      ],
+      explanation: "Змінна age має тип number.",
     },
     {
-    id: 2,
-    question: "Напиши змінну name типу string.",
-    requiredParts: ["let", "name", "string"],
-    explanation: "Тип string використовується для тексту.",
+      id: 2,
+      question: "Доповни оголошення змінної name типу string.",
+      template: `let name: ___ = "Alex";`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "string",
+          options: ["string", "number", "boolean"],
+        },
+      ],
+      explanation: "Для тексту використовується тип string.",
     },
     {
-    id: 3,
-    question: "Напиши функцію, яка нічого не повертає.",
-    requiredParts: ["function", "void"],
-    explanation: "void означає, що функція нічого не повертає.",
+      id: 3,
+      question: "Доповни функцію, яка нічого не повертає.",
+      template: `function logMessage(): ___ {
+    console.log("Hello");
+  }`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "void",
+          options: ["void", "string", "number"],
+        },
+      ],
+      explanation: "Якщо функція нічого не повертає, використовується void.",
     },
     {
-    id: 4,
-    question: "Напиши масив чисел.",
-    requiredParts: ["number[]"],
-    explanation: "Масив чисел записується як number[].",
+      id: 4,
+      question: "Доповни тип масиву чисел.",
+      template: `let list: ___ = [1, 2, 3];`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "number[]",
+          options: ["number[]", "string[]", "Array"],
+        },
+      ],
+      explanation: "Масив чисел записується як number[].",
     },
     {
-    id: 5,
-    question: "Напиши interface User.",
-    requiredParts: ["interface", "User"],
-    explanation: "Потрібно створити interface User.",
+      id: 5,
+      question: "Доповни interface User.",
+      template: `interface User {
+    name: ___;
+  }`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "string",
+          options: ["string", "number", "boolean"],
+        },
+      ],
+      explanation: "Поле name в interface User має тип string.",
     },
     {
-    id: 6,
-    question: "Напиши union тип string | number.",
-    requiredParts: ["string", "|", "number"],
-    explanation: "Union тип використовує |.",
+      id: 6,
+      question: "Доповни union type.",
+      template: `let id: string ___ number;`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "|",
+          options: ["|", "&", ":"],
+        },
+      ],
+      explanation: "Union type використовує оператор |.",
     },
     {
-    id: 7,
-    question: "Напиши змінну з типом boolean.",
-    requiredParts: ["boolean"],
-    explanation: "boolean — true або false.",
+      id: 7,
+      question: "Доповни змінну з типом boolean.",
+      template: `let isActive: ___ = true;`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "boolean",
+          options: ["boolean", "string", "number"],
+        },
+      ],
+      explanation: "Тип для true/false — boolean.",
     },
     {
-    id: 8,
-    question: "Напиши змінну з типом any.",
-    requiredParts: ["any"],
-    explanation: "any дозволяє будь-який тип.",
+      id: 8,
+      question: "Доповни змінну з типом any.",
+      template: `let data: ___;`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "any",
+          options: ["any", "unknown", "void"],
+        },
+      ],
+      explanation: "Тип any дозволяє будь-яке значення.",
     },
     {
-    id: 9,
-    question: "Напиши функцію sum з number.",
-    requiredParts: ["function", "number"],
-    explanation: "Функція має працювати з number.",
+      id: 9,
+      question: "Доповни функцію sum.",
+      template: `function sum(a: number, b: number): ___ {
+    return a + b;
+  }`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "number",
+          options: ["number", "string", "void"],
+        },
+      ],
+      explanation: "Функція sum повертає число, тому тип return — number.",
     },
     {
-    id: 10,
-    question: "Напиши змінну id з union типом.",
-    requiredParts: ["id", "string", "|", "number"],
-    explanation: "id може бути string або number.",
+      id: 10,
+      question: "Доповни змінну id з union типом.",
+      template: `let id: ___ | ___ = 10;`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "string",
+          options: ["string", "boolean", "void"],
+        },
+        {
+          id: "b2",
+          correct: "number",
+          options: ["number", "any", "null"],
+        },
+      ],
+      explanation: "Union type дозволяє id бути string або number.",
     },
-];
+  ];

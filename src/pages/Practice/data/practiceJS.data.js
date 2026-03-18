@@ -209,92 +209,183 @@ export const practiceJavaScriptIntro = {
   export const practiceJavaScriptLevel3Tasks = [
     {
       id: 1,
-      question: "Напиши функцію sum, яка повертає суму двох чисел.",
-      starterCode: `function sum(a, b) {
-    
+      question: "Доповни функцію додавання.",
+      template: `function sum(a, b) {
+    return ___ + ___;
   }`,
-      requiredParts: ["function sum", "return a + b"],
-      explanation: "Функція має приймати два аргументи і повертати їх суму.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "a",
+          options: ["a", "b", "sum"],
+        },
+        {
+          id: "b2",
+          correct: "b",
+          options: ["a", "b", "result"],
+        },
+      ],
+      explanation: "Функція має повертати суму a + b.",
     },
     {
       id: 2,
-      question: "Напиши функцію multiply, яка повертає добуток двох чисел.",
-      starterCode: `function multiply(a, b) {
-    
+      question: "Доповни функцію множення.",
+      template: `function multiply(a, b) {
+    return ___ * ___;
   }`,
-      requiredParts: ["function multiply", "return a * b"],
-      explanation: "Функція має повертати результат множення a і b.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "a",
+          options: ["a", "b", "value"],
+        },
+        {
+          id: "b2",
+          correct: "b",
+          options: ["a", "b", "result"],
+        },
+      ],
+      explanation: "Функція має повертати результат множення a * b.",
     },
     {
       id: 3,
-      question: "Напиши функцію getArrayLength, яка повертає довжину масиву.",
-      starterCode: `function getArrayLength(arr) {
-    
+      question: "Доповни функцію, яка повертає довжину масиву.",
+      template: `function getArrayLength(arr) {
+    return arr.___;
   }`,
-      requiredParts: ["function getArrayLength", "return arr.length"],
-      explanation: "Для довжини масиву використовується властивість length.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "length",
+          options: ["length", "size", "count"],
+        },
+      ],
+      explanation: "Для отримання довжини масиву використовується властивість length.",
     },
     {
       id: 4,
-      question: "Напиши функцію getFirstItem, яка повертає перший елемент масиву.",
-      starterCode: `function getFirstItem(arr) {
-    
+      question: "Доповни функцію, яка повертає перший елемент масиву.",
+      template: `function getFirstItem(arr) {
+    return arr[___];
   }`,
-      requiredParts: ["function getFirstItem", "return arr[0]"],
+      blanks: [
+        {
+          id: "b1",
+          correct: "0",
+          options: ["0", "1", "length"],
+        },
+      ],
       explanation: "Перший елемент масиву знаходиться за індексом 0.",
     },
     {
       id: 5,
-      question: "Напиши функцію toUpper, яка переводить рядок у верхній регістр.",
-      starterCode: `function toUpper(text) {
-    
+      question: "Доповни функцію, яка переводить рядок у верхній регістр.",
+      template: `function toUpper(text) {
+    return text.___();
   }`,
-      requiredParts: ["function toUpper", "return text.toUpperCase()"],
+      blanks: [
+        {
+          id: "b1",
+          correct: "toUpperCase",
+          options: ["toUpperCase", "toLowerCase", "trim"],
+        },
+      ],
       explanation: "Метод toUpperCase повертає рядок у верхньому регістрі.",
     },
     {
       id: 6,
-      question: "Напиши функцію isGreaterThanTen, яка повертає true, якщо число більше 10.",
-      starterCode: `function isGreaterThanTen(num) {
-    
+      question: "Доповни функцію, яка перевіряє чи число більше 10.",
+      template: `function isGreaterThanTen(num) {
+    return num ___ 10;
   }`,
-      requiredParts: ["function isGreaterThanTen", "return num > 10"],
+      blanks: [
+        {
+          id: "b1",
+          correct: ">",
+          options: [">", "<", "==="],
+        },
+      ],
       explanation: "Потрібно повернути результат порівняння num > 10.",
     },
     {
       id: 7,
-      question: "Напиши функцію addItem, яка додає елемент у кінець масиву.",
-      starterCode: `function addItem(arr, item) {
-    
+      question: "Доповни функцію, яка додає елемент у кінець масиву.",
+      template: `function addItem(arr, item) {
+    arr.___(item);
+    return ___;
   }`,
-      requiredParts: ["function addItem", "arr.push(item)", "return arr"],
-      explanation: "Можна використати push, а потім повернути оновлений масив.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "push",
+          options: ["push", "pop", "map"],
+        },
+        {
+          id: "b2",
+          correct: "arr",
+          options: ["arr", "item", "push"],
+        },
+      ],
+      explanation: "Елемент додається через push, після чого повертається arr.",
     },
     {
       id: 8,
-      question: "Напиши функцію doubleNumbers, яка повертає новий масив з подвоєними числами.",
-      starterCode: `function doubleNumbers(arr) {
-    
+      question: "Доповни функцію, яка подвоює всі числа масиву.",
+      template: `function doubleNumbers(arr) {
+    return arr.___((item) => item * ___);
   }`,
-      requiredParts: ["function doubleNumbers", "arr.map", "item * 2"],
-      explanation: "Для цього найзручніше використати map.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "map",
+          options: ["map", "filter", "find"],
+        },
+        {
+          id: "b2",
+          correct: "2",
+          options: ["2", "1", "0"],
+        },
+      ],
+      explanation: "Для перетворення кожного елемента використовується map.",
     },
     {
       id: 9,
-      question: "Напиши функцію getEvenNumbers, яка повертає тільки парні числа.",
-      starterCode: `function getEvenNumbers(arr) {
-    
+      question: "Доповни функцію, яка повертає тільки парні числа.",
+      template: `function getEvenNumbers(arr) {
+    return arr.___((item) => item % 2 === ___);
   }`,
-      requiredParts: ["function getEvenNumbers", "arr.filter", "item % 2 === 0"],
+      blanks: [
+        {
+          id: "b1",
+          correct: "filter",
+          options: ["filter", "map", "reduce"],
+        },
+        {
+          id: "b2",
+          correct: "0",
+          options: ["0", "1", "2"],
+        },
+      ],
       explanation: "Для відбору елементів за умовою використовується filter.",
     },
     {
       id: 10,
-      question: "Напиши функцію getTotal, яка повертає суму всіх чисел у масиві.",
-      starterCode: `function getTotal(arr) {
-    
+      question: "Доповни функцію, яка знаходить суму елементів масиву.",
+      template: `function getTotal(arr) {
+    return arr.___((acc, item) => acc + item, ___);
   }`,
-      requiredParts: ["function getTotal", "arr.reduce", "acc + item"],
-      explanation: "Для підрахунку суми масиву зручно використати reduce.",
+      blanks: [
+        {
+          id: "b1",
+          correct: "reduce",
+          options: ["reduce", "map", "filter"],
+        },
+        {
+          id: "b2",
+          correct: "0",
+          options: ["0", "1", "[]"],
+        },
+      ],
+      explanation: "Для підрахунку суми масиву зручно використовувати reduce.",
     },
   ];

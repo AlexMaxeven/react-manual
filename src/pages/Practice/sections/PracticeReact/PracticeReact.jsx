@@ -13,6 +13,7 @@ const PracticeReact = () => {
     <PracticeTemplate
       intro={practiceReactIntro}
       levels={practiceReactLevels}
+      storageKey="practice-react-progress"
       level1Tasks={practiceReactLevel1Tasks}
       level2Tasks={practiceReactLevel2Tasks}
       level3Tasks={practiceReactLevel3Tasks}
