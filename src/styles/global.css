@@ -7,7 +7,7 @@
     --radius: 12px;
     --text-secondary: rgba(233, 236, 241, 0.7);
     --bg-accent: rgba(255, 255, 255, 0.02);
-    --blue: #2b00ff;
+    --blue: #1900ff;
 }
 
 [data-theme="light"] {
