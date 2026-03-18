@@ -1,16 +1,51 @@
-# React + Vite
+# R_J_TP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Навчальний проєкт з практикою по **JavaScript / React / TypeScript**.
 
-Currently, two official plugins are available:
+Фокус: короткі інтерактивні практики з рівнями, перевіркою відповідей і фідбеком (пояснення + правильна відповідь/очікувані частини коду).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Що є в проєкті
 
-## React Compiler
+- **Practice pages**: окремі секції для JS/React/TS + Overview
+- **Єдиний шаблон практики**: `PracticeTemplate` відмальовує рівні, прогрес, перевірку, фідбек і фініш-картки
+- **Дані задач**: зберігаються у `*.data.js` (інтро, рівні, tasks для Level 1–3)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Структура (основне)
 
-## Expanding the ESLint configuration
+```text
+src/
+  pages/
+    Practice/
+      index.js
+      layout/
+        PracticeLayout.jsx
+      nav/
+        practice.nav.js
+      sections/
+        PracticeOverview/
+          PracticeOverview.jsx
+          PracticeOverview.module.css
+        PracticeJS/
+          PracticeJS.jsx
+        PracticeReact/
+          PracticeReact.jsx
+        PracticeTypescript/
+          PracticeTypescript.jsx
+      components/
+        PracticeTemplate/
+          PracticeTemplate.jsx
+          PracticeTemplate.module.css
+        Progress.jsx
+        FeedBack.jsx
+        FinishCard.jsx
+      hooks/
+        usePracticeLevel.jsx
+      data/
+        practiceOverview.data.js
+        practiceJS.data.js
+        practiceReact.data.js
+        practiceTypescript.data.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+public/
+  favicon.svg
+```
