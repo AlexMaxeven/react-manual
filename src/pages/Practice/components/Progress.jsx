@@ -1,4 +1,4 @@
-import styles from "@/pages/Practice/sections/PracticeJS/PracticeJS.module.css";
+import styles from "../components/PracticeTemplate/PracticeTemplate.module.css";
 
 const Progress = ({ current, total, score }) => {
   const progressPercent = ((current + 1) / total) * 100;

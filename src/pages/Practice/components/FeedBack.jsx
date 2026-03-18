@@ -1,4 +1,4 @@
-import styles from "@/pages/Practice/sections/PracticeJS/PracticeJS.module.css";
+import styles from "../components/PracticeTemplate/PracticeTemplate.module.css";
 
 const FeedBack = ({
     resultRef,
