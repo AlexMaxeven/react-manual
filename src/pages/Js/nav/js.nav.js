@@ -4,5 +4,5 @@ export const jsNav = [
     { to: "async", label: "Async" },
     { to: "dome", label: "DOM" },
     { to: "roadmap", label: "Roadmap" },
-    { to: "practice", label: "PRACTICE" },
+    { to: "/practice/overview", label: "PRACTICE" },
   ];

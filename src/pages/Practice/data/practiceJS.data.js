@@ -1,3 +1,16 @@
+const buildTaskGroups = (tasks, extraVariantsById = {}) => {
+  return tasks.map(({ id, ...task }) => ({
+    id,
+    variants: [
+      {
+        variantId: `${id}-base`,
+        ...task,
+      },
+      ...(extraVariantsById[id] || []),
+    ],
+  }));
+};
+
 export const practiceJavaScriptIntro = {
     title: "Practice JavaScript",
     description:
@@ -103,6 +116,84 @@ export const practiceJavaScriptIntro = {
     },
   ];
 
+  const practiceJavaScriptLevel1ExtraVariants = {
+    1: [
+      {
+        variantId: "1-hard-1",
+        question: "Що повертає typeof NaN?",
+        options: ["NaN", "number", "undefined", "object"],
+        answer: "number",
+        explanation:
+          "У JavaScript NaN має тип number, хоча означає 'Not a Number'.",
+      },
+      {
+        variantId: "1-hard-2",
+        question: "Що поверне вираз typeof undefined?",
+        options: ["null", "undefined", "object", "string"],
+        answer: "undefined",
+        explanation:
+          "typeof undefined повертає рядок 'undefined'.",
+      },
+    ],
+  
+    2: [
+      {
+        variantId: "2-hard-1",
+        question: "Який метод масиву повертає новий масив тієї ж довжини після обробки кожного елемента?",
+        options: ["find", "map", "some", "reduce"],
+        answer: "map",
+        explanation:
+          "map створює новий масив, застосовуючи callback до кожного елемента.",
+      },
+      {
+        variantId: "2-hard-2",
+        question: "Який метод найкраще підходить, якщо треба перетворити кожен елемент масиву?",
+        options: ["filter", "forEach", "map", "includes"],
+        answer: "map",
+        explanation:
+          "Для трансформації кожного елемента використовується map.",
+      },
+    ],
+  
+    3: [
+      {
+        variantId: "3-hard-1",
+        question: "Який оператор не виконує приведення типів?",
+        options: ["==", "===", "!=", "<="],
+        answer: "===",
+        explanation:
+          "=== виконує строгу перевірку без приведення типів.",
+      },
+    ],
+  
+    4: [
+      {
+        variantId: "4-hard-1",
+        question: "Що краще використовувати, якщо значення змінної не буде переприсвоюватись?",
+        options: ["var", "const", "let", "define"],
+        answer: "const",
+        explanation:
+          "За замовчуванням краще використовувати const.",
+      },
+    ],
+  
+    5: [
+      {
+        variantId: "5-hard-1",
+        question: "Який метод повертає новий масив лише з елементами, що задовольняють умову?",
+        options: ["filter", "map", "reduce", "every"],
+        answer: "filter",
+        explanation:
+          "filter залишає тільки ті елементи, які пройшли перевірку.",
+      },
+    ],
+  };
+
+  export const practiceJavaScriptLevel1TaskGroups = buildTaskGroups(
+    practiceJavaScriptLevel1Tasks,
+    practiceJavaScriptLevel1ExtraVariants
+  );
+
   export const practiceJavaScriptLevel2Tasks = [
     {
       id: 1,
@@ -205,6 +296,90 @@ export const practiceJavaScriptIntro = {
         "Ключове слово async робить функцію асинхронною і вона повертає Promise.",
     },
   ];
+
+  const practiceJavaScriptLevel2ExtraVariants = {
+    1: [
+      {
+        variantId: "1-hard-1",
+        question: "Доповни код так, щоб створився новий масив із квадратами чисел.",
+        code: `const numbers = [1, 2, 3];
+  
+  const squared = numbers.____((item) => item ** 2);`,
+        answer: "map",
+        explanation:
+          "map використовується для створення нового масиву після трансформації елементів.",
+      },
+      {
+        variantId: "1-hard-2",
+        question: "Доповни код так, щоб перетворити масив рядків у масив їх довжин.",
+        code: `const words = ["js", "react", "ts"];
+  
+  const lengths = words.____((item) => item.length);`,
+        answer: "map",
+        explanation:
+          "map дозволяє перетворити кожен елемент масиву в нове значення.",
+      },
+    ],
+  
+    2: [
+      {
+        variantId: "2-hard-1",
+        question: "Доповни код так, щоб залишились тільки парні числа.",
+        code: `const numbers = [1, 2, 3, 4, 5, 6];
+  
+  const result = numbers.____((item) => item % 2 === 0);`,
+        answer: "filter",
+        explanation:
+          "filter залишає лише ті елементи, що відповідають умові.",
+      },
+    ],
+  
+    3: [
+      {
+        variantId: "3-hard-1",
+        question: "Доповни код так, щоб у консоль вивівся об'єкт user.",
+        code: `const user = { name: "Alex" };
+  
+  console.____(user);`,
+        answer: "log",
+        explanation:
+          "Для виводу в консоль використовується console.log().",
+      },
+    ],
+  
+    4: [
+      {
+        variantId: "4-hard-1",
+        question: "Доповни код так, щоб рядок став у нижньому регістрі.",
+        code: `const text = "HELLO";
+  
+  const result = text.____();`,
+        answer: "toLowerCase",
+        explanation:
+          "toLowerCase повертає рядок у нижньому регістрі.",
+      },
+    ],
+  
+    8: [
+      {
+        variantId: "8-hard-1",
+        question: "Доповни код так, щоб reduce накопичував добуток чисел.",
+        code: `const numbers = [2, 3, 4];
+  
+  const total = numbers.reduce((acc, item) => {
+    return acc ____ item;
+  }, 1);`,
+        answer: "*",
+        explanation:
+          "Щоб накопичувати добуток, треба множити acc на item.",
+      },
+    ],
+  };
+
+  export const practiceJavaScriptLevel2TaskGroups = buildTaskGroups(
+    practiceJavaScriptLevel2Tasks,
+    practiceJavaScriptLevel2ExtraVariants
+  );
 
   export const practiceJavaScriptLevel3Tasks = [
     {
@@ -389,3 +564,120 @@ export const practiceJavaScriptIntro = {
       explanation: "Для підрахунку суми масиву зручно використовувати reduce.",
     },
   ];
+
+  const practiceJavaScriptLevel3ExtraVariants = {
+    1: [
+      {
+        variantId: "1-hard-1",
+        question: "Доповни функцію віднімання.",
+        template: `function subtract(a, b) {
+    return ___ - ___;
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "a",
+            options: ["a", "b", "subtract"],
+          },
+          {
+            id: "b2",
+            correct: "b",
+            options: ["a", "b", "result"],
+          },
+        ],
+        explanation:
+          "Функція має повертати результат a - b.",
+      },
+    ],
+  
+    3: [
+      {
+        variantId: "3-hard-1",
+        question: "Доповни функцію, яка повертає довжину рядка.",
+        template: `function getTextLength(text) {
+    return text.___;
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "length",
+            options: ["length", "size", "count"],
+          },
+        ],
+        explanation:
+          "Для рядків також використовується властивість length.",
+      },
+    ],
+  
+    4: [
+      {
+        variantId: "4-hard-1",
+        question: "Доповни функцію, яка повертає останній елемент масиву.",
+        template: `function getLastItem(arr) {
+    return arr[arr.length - ___];
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "1",
+            options: ["0", "1", "2"],
+          },
+        ],
+        explanation:
+          "Останній елемент масиву — це arr[arr.length - 1].",
+      },
+    ],
+  
+    8: [
+      {
+        variantId: "8-hard-1",
+        question: "Доповни функцію, яка збільшує кожне число масиву на 1.",
+        template: `function increaseNumbers(arr) {
+    return arr.___((item) => item + ___);
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "map",
+            options: ["map", "filter", "find"],
+          },
+          {
+            id: "b2",
+            correct: "1",
+            options: ["1", "2", "0"],
+          },
+        ],
+        explanation:
+          "map використовується для зміни кожного елемента масиву.",
+      },
+    ],
+  
+    10: [
+      {
+        variantId: "10-hard-1",
+        question: "Доповни функцію, яка знаходить найбільше число в масиві.",
+        template: `function getMax(arr) {
+    return arr.___((acc, item) => item > acc ? item : acc, ___);
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "reduce",
+            options: ["reduce", "map", "filter"],
+          },
+          {
+            id: "b2",
+            correct: "arr[0]",
+            options: ["0", "arr[0]", "[]"],
+          },
+        ],
+        explanation:
+          "reduce можна використати для пошуку максимального значення.",
+      },
+    ],
+  };
+
+  export const practiceJavaScriptLevel3TaskGroups = buildTaskGroups(
+    practiceJavaScriptLevel3Tasks,
+    practiceJavaScriptLevel3ExtraVariants
+  );

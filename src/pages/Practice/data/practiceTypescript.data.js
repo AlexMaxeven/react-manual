@@ -1,3 +1,16 @@
+const buildTaskGroups = (tasks, extraVariantsById = {}) => {
+  return tasks.map(({ id, ...task }) => ({
+    id,
+    variants: [
+      {
+        variantId: `${id}-base`,
+        ...task,
+      },
+      ...(extraVariantsById[id] || []),
+    ],
+  }));
+};
+
 export const practiceTypeScriptIntro = {
     title: "Practice TypeScript",
     description:
@@ -113,6 +126,78 @@ export const practiceTypeScriptLevel1Tasks = [
     },
 ];
 
+const practiceTypeScriptLevel1ExtraVariants = {
+  1: [
+    {
+      variantId: "1-hard-1",
+      question: "Що додає TypeScript до JavaScript?",
+      options: [
+        "Серверний рендер",
+        "Статичну типізацію",
+        "CSS-модулі",
+        "HTML-шаблони",
+      ],
+      answer: "Статичну типізацію",
+      explanation:
+        "Головна перевага TypeScript — статична типізація поверх JavaScript.",
+    },
+  ],
+
+  2: [
+    {
+      variantId: "2-hard-1",
+      question: "Який тип використовується для текстових значень у TypeScript?",
+      options: ["number", "string", "boolean", "void"],
+      answer: "string",
+      explanation:
+        "Тип string використовується для рядків.",
+    },
+  ],
+
+  3: [
+    {
+      variantId: "3-hard-1",
+      question: "Який тип підходить для 10, 25, 100?",
+      options: ["string", "number", "boolean", "unknown"],
+      answer: "number",
+      explanation:
+        "Усі числові значення в TypeScript мають тип number.",
+    },
+  ],
+
+  4: [
+    {
+      variantId: "4-hard-1",
+      question: "Що описує тип boolean?",
+      options: ["Текст", "Числа", "true або false", "Масиви"],
+      answer: "true або false",
+      explanation:
+        "boolean використовується для логічних значень.",
+    },
+  ],
+
+  6: [
+    {
+      variantId: "6-hard-1",
+      question: "Для чого у TypeScript використовується interface?",
+      options: [
+        "Для створення циклів",
+        "Для опису структури об'єкта",
+        "Для стилізації компонентів",
+        "Для перетворення масивів",
+      ],
+      answer: "Для опису структури об'єкта",
+      explanation:
+        "interface описує форму об'єкта: його поля та типи.",
+    },
+  ],
+};
+
+export const practiceTypeScriptLevel1TaskGroups = buildTaskGroups(
+  practiceTypeScriptLevel1Tasks,
+  practiceTypeScriptLevel1ExtraVariants
+);
+
 export const practiceTypeScriptLevel2Tasks = [
     {
     id: 1,
@@ -191,6 +276,83 @@ export const practiceTypeScriptLevel2Tasks = [
     explanation: "boolean — true або false.",
     },
 ];
+
+const practiceTypeScriptLevel2ExtraVariants = {
+  1: [
+    {
+      variantId: "1-hard-1",
+      question: "Доповни код типом string.",
+      code: `const title: ____ = "Manual";`,
+      answer: "string",
+      explanation:
+        "Для тексту в TypeScript використовується тип string.",
+    },
+  ],
+
+  2: [
+    {
+      variantId: "2-hard-1",
+      question: "Доповни код типом number.",
+      code: `const total: ____ = 100;`,
+      answer: "number",
+      explanation:
+        "Числові значення мають тип number.",
+    },
+  ],
+
+  4: [
+    {
+      variantId: "4-hard-1",
+      question: "Доповни код масивом рядків.",
+      code: `let names: ____ = ["Alex", "John"];`,
+      answer: "string[]",
+      explanation:
+        "Масив рядків записується як string[].",
+    },
+  ],
+
+  5: [
+    {
+      variantId: "5-hard-1",
+      question: "Доповни код union типом.",
+      code: `let value: number ____ string;`,
+      answer: "|",
+      explanation:
+        "Union type використовує оператор |.",
+    },
+  ],
+
+  7: [
+    {
+      variantId: "7-hard-1",
+      question: "Доповни код інтерфейсу для віку.",
+      code: `interface User {
+  age: ____;
+}`,
+      answer: "number",
+      explanation:
+        "Поле age має тип number.",
+    },
+  ],
+
+  9: [
+    {
+      variantId: "9-hard-1",
+      question: "Доповни код функції, яка повертає string.",
+      code: `function getName(): ____ {
+  return "Alex";
+}`,
+      answer: "string",
+      explanation:
+        "Функція повертає рядок, отже return type — string.",
+    },
+  ],
+};
+
+export const practiceTypeScriptLevel2TaskGroups = buildTaskGroups(
+  practiceTypeScriptLevel2Tasks,
+  practiceTypeScriptLevel2ExtraVariants
+);
 
 export const practiceTypeScriptLevel3Tasks = [
     {
@@ -335,3 +497,116 @@ export const practiceTypeScriptLevel3Tasks = [
       explanation: "Union type дозволяє id бути string або number.",
     },
   ];
+
+  const practiceTypeScriptLevel3ExtraVariants = {
+    1: [
+      {
+        variantId: "1-hard-1",
+        question: "Доповни оголошення змінної price типу number.",
+        template: `let price: ___ = 199;`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "number",
+            options: ["number", "string", "boolean"],
+          },
+        ],
+        explanation:
+          "Числові змінні мають тип number.",
+      },
+    ],
+  
+    2: [
+      {
+        variantId: "2-hard-1",
+        question: "Доповни оголошення змінної title типу string.",
+        template: `let title: ___ = "TypeScript";`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "string",
+            options: ["string", "number", "boolean"],
+          },
+        ],
+        explanation:
+          "Для текстових значень використовується string.",
+      },
+    ],
+  
+    4: [
+      {
+        variantId: "4-hard-1",
+        question: "Доповни тип масиву рядків.",
+        template: `let names: ___ = ["Alex", "John"];`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "string[]",
+            options: ["string[]", "number[]", "Array"],
+          },
+        ],
+        explanation:
+          "Масив рядків записується як string[].",
+      },
+    ],
+  
+    5: [
+      {
+        variantId: "5-hard-1",
+        question: "Доповни interface Product.",
+        template: `interface Product {
+    price: ___;
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "number",
+            options: ["number", "string", "boolean"],
+          },
+        ],
+        explanation:
+          "Поле price має тип number.",
+      },
+    ],
+  
+    6: [
+      {
+        variantId: "6-hard-1",
+        question: "Доповни union type для id.",
+        template: `let id: number ___ string;`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "|",
+            options: ["|", "&", ":"],
+          },
+        ],
+        explanation:
+          "Union type будується через оператор |.",
+      },
+    ],
+  
+    9: [
+      {
+        variantId: "9-hard-1",
+        question: "Доповни функцію getAge.",
+        template: `function getAge(): ___ {
+    return 25;
+  }`,
+        blanks: [
+          {
+            id: "b1",
+            correct: "number",
+            options: ["number", "string", "void"],
+          },
+        ],
+        explanation:
+          "Функція повертає число, тому тип — number.",
+      },
+    ],
+  };
+  
+  export const practiceTypeScriptLevel3TaskGroups = buildTaskGroups(
+    practiceTypeScriptLevel3Tasks,
+    practiceTypeScriptLevel3ExtraVariants
+  );

@@ -4,5 +4,5 @@ export const typeScriptNav = [
     { to: "interfaces", label: "Interfaces" },
     { to: "generics", label: "Generics" },
     { to: "roadmap", label: "Roadmap" },
-    { to: "practice", label: "PRACTICE" },
+    { to: "/practice/overview", label: "PRACTICE" },
 ];

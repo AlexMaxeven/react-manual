@@ -34,7 +34,7 @@ const ManualNav = ({ title, basePath, items }) => {
             {items.map((it) => (
                 <NavLink
                     key={it.to}
-                    to={`${basePath}/${it.to}`}
+                    to={it.to.startsWith("/") ? it.to : `${basePath}/${it.to}`}
                     end={it.end}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className={({ isActive }) => (

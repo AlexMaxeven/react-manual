@@ -1,22 +1,36 @@
+import { useState } from "react";
 import PracticeTemplate from "@/pages/Practice/components/PracticeTemplate/PracticeTemplate";
+import { getRandomTaskSet } from "@/shared/lib/getRandomTaskSet";
 
 import {
   practiceReactIntro,
   practiceReactLevels,
-  practiceReactLevel1Tasks,
-  practiceReactLevel2Tasks,
-  practiceReactLevel3Tasks,
+  practiceReactLevel1TaskGroups,
+  practiceReactLevel2TaskGroups,
+  practiceReactLevel3TaskGroups,
 } from "@/pages/Practice/data/practiceReact.data";
 
 const PracticeReact = () => {
+  const [level1Tasks] = useState(() =>
+    getRandomTaskSet(practiceReactLevel1TaskGroups)
+  );
+
+  const [level2Tasks] = useState(() =>
+    getRandomTaskSet(practiceReactLevel2TaskGroups)
+  );
+
+  const [level3Tasks] = useState(() =>
+    getRandomTaskSet(practiceReactLevel3TaskGroups)
+  );
+
   return (
     <PracticeTemplate
       intro={practiceReactIntro}
-      levels={practiceReactLevels}
       storageKey="practice-react-progress"
-      level1Tasks={practiceReactLevel1Tasks}
-      level2Tasks={practiceReactLevel2Tasks}
-      level3Tasks={practiceReactLevel3Tasks}
+      levels={practiceReactLevels}
+      level1Tasks={level1Tasks}
+      level2Tasks={level2Tasks}
+      level3Tasks={level3Tasks}
       level1Title="Level 1 — Basics Quiz"
       level2Title="Level 2 — Complete the Code"
       level3Title="Level 3 — Write the Code"

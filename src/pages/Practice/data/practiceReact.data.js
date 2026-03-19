@@ -1,3 +1,16 @@
+const buildTaskGroups = (tasks, extraVariantsById = {}) => {
+  return tasks.map(({ id, ...task }) => ({
+    id,
+    variants: [
+      {
+        variantId: `${id}-base`,
+        ...task,
+      },
+      ...(extraVariantsById[id] || []),
+    ],
+  }));
+};
+
 export const practiceReactIntro = {
     title: "Practice React",
     description:
@@ -113,6 +126,78 @@ export const practiceReactLevel1Tasks = [
     },
 ];
 
+const practiceReactLevel1ExtraVariants = {
+  1: [
+    {
+      variantId: "1-hard-1",
+      question: "Що таке React component у функціональному підході?",
+      options: [
+        "Функція або клас, що повертає UI",
+        "CSS-модуль",
+        "HTML-атрибут",
+        "Тип даних",
+      ],
+      answer: "Функція або клас, що повертає UI",
+      explanation:
+        "React component — це одиниця UI, зазвичай функція або клас, що повертає JSX.",
+    },
+  ],
+
+  2: [
+    {
+      variantId: "2-hard-1",
+      question: "Який хук використовується для збереження значення між рендерами?",
+      options: ["useEffect", "useState", "useMemo", "useId"],
+      answer: "useState",
+      explanation:
+        "useState дозволяє зберігати локальний стан між рендерами компонента.",
+    },
+  ],
+
+  3: [
+    {
+      variantId: "3-hard-1",
+      question: "Що таке props у React-компоненті?",
+      options: [
+        "Внутрішній state",
+        "Дані, передані ззовні в компонент",
+        "Методи життєвого циклу",
+        "Список ефектів",
+      ],
+      answer: "Дані, передані ззовні в компонент",
+      explanation:
+        "Props — це вхідні дані компонента, які передає батьківський компонент.",
+    },
+  ],
+
+  4: [
+    {
+      variantId: "4-hard-1",
+      question: "Який хук використовують для запитів, таймерів і підписок?",
+      options: ["useRef", "useMemo", "useEffect", "useState"],
+      answer: "useEffect",
+      explanation:
+        "useEffect потрібен для побічних ефектів.",
+    },
+  ],
+
+  5: [
+    {
+      variantId: "5-hard-1",
+      question: "Що потрібно додавати в елементи списку під час render через map?",
+      options: ["className", "id", "key", "name"],
+      answer: "key",
+      explanation:
+        "key допомагає React правильно відстежувати елементи списку.",
+    },
+  ],
+};
+
+export const practiceReactLevel1TaskGroups = buildTaskGroups(
+  practiceReactLevel1Tasks,
+  practiceReactLevel1ExtraVariants
+);
+
 export const practiceReactLevel2Tasks = [
     {
     id: 1,
@@ -202,146 +287,262 @@ export const practiceReactLevel2Tasks = [
     },
 ];
 
+const practiceReactLevel2ExtraVariants = {
+  1: [
+    {
+      variantId: "1-hard-1",
+      question: "Доповни код так, щоб створити state для тексту.",
+      code: `const [text, setText] = ____ ("");`,
+      answer: "useState",
+      explanation:
+        "Для створення локального state використовується useState.",
+    },
+  ],
+
+  2: [
+    {
+      variantId: "2-hard-1",
+      question: "Доповни код так, щоб викликати функцію при кліку.",
+      code: `<div ____={handleClick}>Open</div>`,
+      answer: "onClick",
+      explanation:
+        "У React подія кліку задається через onClick.",
+    },
+  ],
+
+  3: [
+    {
+      variantId: "3-hard-1",
+      question: "Доповни код так, щоб відрендерити масив карток.",
+      code: `{cards.____((card) => <Card key={card.id} title={card.title} />)}`,
+      answer: "map",
+      explanation:
+        "Для рендеру списків у React найчастіше використовують map.",
+    },
+  ],
+
+  5: [
+    {
+      variantId: "5-hard-1",
+      question: "Доповни код так, щоб input оновлював state value.",
+      code: `<input value={value} ____={(e) => setValue(e.target.value)} />`,
+      answer: "onChange",
+      explanation:
+        "Контрольований input змінює state через onChange.",
+    },
+  ],
+
+  6: [
+    {
+      variantId: "6-hard-1",
+      question: "Доповни код так, щоб useEffect запускався після кожної зміни count.",
+      code: `useEffect(() => {
+  console.log(count);
+}, ____);`,
+      answer: "[count]",
+      explanation:
+        "Якщо в dependency array є count, ефект запускається після змін count.",
+    },
+  ],
+};
+
+export const practiceReactLevel2TaskGroups = buildTaskGroups(
+  practiceReactLevel2Tasks,
+  practiceReactLevel2ExtraVariants
+);
+
 export const practiceReactLevel3Tasks = [
   {
     id: 1,
-    question: "Доповни оголошення змінної age типу number.",
-    template: `let age: ___ = 25;`,
+    question: "Доповни компонент кнопки.",
+    template: `function Button() {
+  return <button>___</button>;
+}`,
     blanks: [
       {
         id: "b1",
-        correct: "number",
-        options: ["number", "string", "boolean"],
+        correct: "Click me",
+        options: ["Click me", "Button", "Submit"],
       },
     ],
-    explanation: "Змінна age має тип number.",
+    explanation: "Компонент має повернути текст усередині button.",
   },
   {
     id: 2,
-    question: "Доповни оголошення змінної name типу string.",
-    template: `let name: ___ = "Alex";`,
+    question: "Доповни useState.",
+    template: `const [count, setCount] = ___(0);`,
     blanks: [
       {
         id: "b1",
-        correct: "string",
-        options: ["string", "number", "boolean"],
+        correct: "useState",
+        options: ["useState", "useEffect", "useRef"],
       },
     ],
-    explanation: "Для тексту використовується тип string.",
+    explanation: "Для локального state у React використовується useState.",
   },
   {
     id: 3,
-    question: "Доповни функцію, яка нічого не повертає.",
-    template: `function logMessage(): ___ {
-  console.log("Hello");
+    question: "Доповни props у компоненті.",
+    template: `function User(props) {
+  return <p>{props.___}</p>;
 }`,
     blanks: [
       {
         id: "b1",
-        correct: "void",
-        options: ["void", "string", "number"],
+        correct: "name",
+        options: ["name", "title", "value"],
       },
     ],
-    explanation: "Якщо функція нічого не повертає, використовується void.",
+    explanation: "Щоб вивести props.name, треба звернутись до name.",
   },
   {
     id: 4,
-    question: "Доповни тип масиву чисел.",
-    template: `let list: ___ = [1, 2, 3];`,
+    question: "Доповни обробник кліку.",
+    template: `<button ___={handleClick}>Open</button>`,
     blanks: [
       {
         id: "b1",
-        correct: "number[]",
-        options: ["number[]", "string[]", "Array"],
+        correct: "onClick",
+        options: ["onClick", "onclick", "onChange"],
       },
     ],
-    explanation: "Масив чисел записується як number[].",
+    explanation: "У React використовується onClick.",
   },
   {
     id: 5,
-    question: "Доповни interface User.",
-    template: `interface User {
-  name: ___;
-}`,
+    question: "Доповни умовний рендер.",
+    template: `{isOpen && <___ />}`,
     blanks: [
       {
         id: "b1",
-        correct: "string",
-        options: ["string", "number", "boolean"],
+        correct: "Modal",
+        options: ["Modal", "Input", "Form"],
       },
     ],
-    explanation: "Поле name в interface User має тип string.",
+    explanation: "Через && можна умовно рендерити Modal.",
   },
   {
     id: 6,
-    question: "Доповни union type.",
-    template: `let id: string ___ number;`,
+    question: "Доповни key у списку.",
+    template: `{items.map((item) => <li ___={item.id}>{item.name}</li>)}`,
     blanks: [
       {
         id: "b1",
-        correct: "|",
-        options: ["|", "&", ":"],
+        correct: "key",
+        options: ["key", "id", "name"],
       },
     ],
-    explanation: "Union type використовує оператор |.",
+    explanation: "У списках React потребує key.",
   },
   {
     id: 7,
-    question: "Доповни змінну з типом boolean.",
-    template: `let isActive: ___ = true;`,
+    question: "Доповни controlled input.",
+    template: `<input value={text} ___={(e) => setText(e.target.value)} />`,
     blanks: [
       {
         id: "b1",
-        correct: "boolean",
-        options: ["boolean", "string", "number"],
+        correct: "onChange",
+        options: ["onChange", "onClick", "onInput"],
       },
     ],
-    explanation: "Тип для true/false — boolean.",
+    explanation: "Контрольований input використовує onChange.",
   },
   {
     id: 8,
-    question: "Доповни змінну з типом any.",
-    template: `let data: ___;`,
-    blanks: [
-      {
-        id: "b1",
-        correct: "any",
-        options: ["any", "unknown", "void"],
-      },
-    ],
-    explanation: "Тип any дозволяє будь-яке значення.",
-  },
-  {
-    id: 9,
-    question: "Доповни функцію sum.",
-    template: `function sum(a: number, b: number): ___ {
-  return a + b;
+    question: "Доповни JSX return.",
+    template: `function App() {
+  ___ <h1>Hello</h1>;
 }`,
     blanks: [
       {
         id: "b1",
-        correct: "number",
-        options: ["number", "string", "void"],
+        correct: "return",
+        options: ["return", "render", "console.log"],
       },
     ],
-    explanation: "Функція sum повертає число, тому тип return — number.",
+    explanation: "Компонент має повертати JSX через return.",
   },
   {
-    id: 10,
-    question: "Доповни змінну id з union типом.",
-    template: `let id: ___ | ___ = 10;`,
+    id: 9,
+    question: "Доповни map у JSX.",
+    template: `{users.___((user) => <p key={user.id}>{user.name}</p>)}`,
     blanks: [
       {
         id: "b1",
-        correct: "string",
-        options: ["string", "boolean", "void"],
-      },
-      {
-        id: "b2",
-        correct: "number",
-        options: ["number", "any", "null"],
+        correct: "map",
+        options: ["map", "filter", "find"],
       },
     ],
-    explanation: "Union type дозволяє id бути string або number.",
+    explanation: "Для рендеру списків у JSX використовують map.",
+  },
+  {
+    id: 10,
+    question: "Доповни useEffect.",
+    template: `___(() => {
+  console.log("mounted");
+}, []);`,
+    blanks: [
+      {
+        id: "b1",
+        correct: "useEffect",
+        options: ["useEffect", "useState", "useMemo"],
+      },
+    ],
+    explanation: "useEffect виконує побічні ефекти.",
   },
 ];
+
+const practiceReactLevel3ExtraVariants = {
+  1: [
+    {
+      variantId: "1-hard-1",
+      question: "Доповни компонент заголовка.",
+      template: `function Title() {
+  return <h1>___</h1>;
+}`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "React",
+          options: ["React", "JSX", "Component"],
+        },
+      ],
+      explanation: "Компонент має повернути текст React усередині h1.",
+    },
+  ],
+  2: [
+    {
+      variantId: "2-hard-1",
+      question: "Доповни useState для булевого значення.",
+      template: `const [isOpen, setIsOpen] = ___(false);`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "useState",
+          options: ["useState", "useEffect", "useRef"],
+        },
+      ],
+      explanation: "Для булевого state також використовується useState.",
+    },
+  ],
+  5: [
+    {
+      variantId: "5-hard-1",
+      question: "Доповни умовний рендер loading.",
+      template: `{isLoading && <___ />}`,
+      blanks: [
+        {
+          id: "b1",
+          correct: "Spinner",
+          options: ["Spinner", "Modal", "List"],
+        },
+      ],
+      explanation: "Часто через && показують Spinner під час завантаження.",
+    },
+  ],
+};
+
+export const practiceReactLevel3TaskGroups = buildTaskGroups(
+  practiceReactLevel3Tasks,
+  practiceReactLevel3ExtraVariants
+);
