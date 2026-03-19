@@ -60,18 +60,15 @@ const PracticeTemplate = ({
     };
 
     const handleLevelChange = (levelId) => {
-        setActiveLevel(levelId);
-        resetLevels(level1, level2, level3);
+      setActiveLevel(levelId);
     };
-
+    
     const handleGoToLevel2 = () => {
         setActiveLevel("level-2");
-        resetLevels(level1, level2);
     };
-
+    
     const handleGoToLevel3 = () => {
         setActiveLevel("level-3");
-        resetLevels(level2, level3);
     };
 
     const handleRestartAll = () => {
