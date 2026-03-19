@@ -107,12 +107,25 @@ const PracticeTemplate = ({
         level3.stateSnapshot,
       ]);
 
-    const renderTemplateWithBlanks = (task, level) => {
+      const renderTemplateWithBlanks = (task, level) => {
         const parts = task.template.split("___");
       
         return parts.map((part, index) => {
           const blank = task.blanks[index];
           const blankValue = blank ? level.values[blank.id] : "";
+      
+          let blankStateClass = styles.blankEmpty;
+      
+          if (blank && blankValue) {
+            blankStateClass = styles.blankFilled;
+          }
+      
+          if (blank && level.checked) {
+            blankStateClass =
+              blankValue === blank.correct
+                ? styles.blankCorrect
+                : styles.blankWrong;
+          }
       
           return (
             <span key={index}>
@@ -123,9 +136,7 @@ const PracticeTemplate = ({
                   type="button"
                   onClick={() => level.clearBlankValue(blank.id)}
                   disabled={level.checked}
-                  className={`${styles.blankButton} ${
-                    blankValue ? styles.blankFilled : styles.blankEmpty
-                  }`}
+                  className={`${styles.blankButton} ${blankStateClass}`}
                 >
                   {blankValue || "___"}
                 </button>
@@ -133,7 +144,7 @@ const PracticeTemplate = ({
             </span>
           );
         });
-    };
+      };
 
     const contentAnimationKey = `${activeLevel}-${level1.index}-${level2.index}-${level3.index}-${level1.isFinished}-${level2.isFinished}-${level3.isFinished}`;
 
@@ -166,25 +177,38 @@ const PracticeTemplate = ({
             <p className={styles.question}>{level1.currentTask.question}</p>
 
             <div className={styles.options}>
-                {level1.currentTask.options.map((option) => {
-                const isSelected = level1.value === option;
+            {level1.currentTask.options.map((option) => {
+              const isSelected = level1.value === option;
+              const isCorrectOption = option === level1.currentTask.answer;
 
-                return (
-                    <button
-                    key={option}
-                    type="button"
-                    onClick={() => {
-                        if (level1.checked) return;
-                        level1.setValue(option);
-                    }}
-                    className={`${styles.option} ${
-                        isSelected ? styles.optionSelected : ""
-                    }`}
-                    >
-                    {option}
-                    </button>
-                );
-                })}
+              let optionStateClass = "";
+
+              if (!level1.checked && isSelected) {
+                optionStateClass = styles.optionSelected;
+              }
+
+              if (level1.checked && isCorrectOption) {
+                optionStateClass = styles.optionCorrect;
+              }
+
+              if (level1.checked && isSelected && !isCorrectOption) {
+                optionStateClass = styles.optionWrong;
+              }
+
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    if (level1.checked) return;
+                    level1.setValue(option);
+                  }}
+                  className={`${styles.option} ${optionStateClass}`}
+                >
+                  {option}
+                </button>
+              );
+            })}
             </div>
 
             <div className={styles.actions}>
@@ -273,17 +297,23 @@ const PracticeTemplate = ({
                 </label>
 
                 <input
-                id="level2-answer"
-                type="text"
-                value={level2.value}
-                onChange={(e) => {
+                  id="level2-answer"
+                  type="text"
+                  value={level2.value}
+                  onChange={(e) => {
                     if (level2.checked) return;
                     level2.setValue(e.target.value);
-                }}
-                placeholder="Type missing part..."
-                className={styles.input}
-                autoComplete="off"
-                spellCheck={false}
+                  }}
+                  placeholder="Type missing part..."
+                  className={`${styles.input} ${
+                    level2.checked
+                      ? level2.isCorrect
+                        ? styles.inputCorrect
+                        : styles.inputWrong
+                      : ""
+                  }`}
+                  autoComplete="off"
+                  spellCheck={false}
                 />
             </div>
 
@@ -473,13 +503,15 @@ const PracticeTemplate = ({
         </div>
 
         <div className={styles.utilityRow}>
-            <button
-                type="button"
-                onClick={handleClearSavedProgress}
-                className={styles.resetProgressButton}
-            >
-                Reset saved progress
-            </button>
+          <p className={styles.savedHint}>Progress saved automatically</p>
+
+          <button
+            type="button"
+            onClick={handleClearSavedProgress}
+            className={styles.resetProgressButton}
+          >
+            Reset saved progress
+          </button>
         </div>
 
         <div key={contentAnimationKey} className={styles.fadeContent}>

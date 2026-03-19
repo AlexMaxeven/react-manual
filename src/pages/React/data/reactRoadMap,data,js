@@ -134,7 +134,7 @@ export const reactRoadMapSections = [
         type: "tip",
         label: "Практика",
         content:
-          "Твій мануал уже є хорошим прикладом layout routing і вкладених сторінок.",
+          "Данний мануал уже є хорошим прикладом layout routing і вкладених сторінок.",
       },
     ],
   },
@@ -192,7 +192,7 @@ export const reactRoadMapSections = [
         type: "tip",
         label: "Порада",
         content:
-          "Для твого проєкту вже добре підходить підхід з CSS Modules і shared UI компонентами.",
+          "Цей проект вже реалізує підхід з CSS Modules і shared UI компонентами.",
       },
     ],
   },
@@ -246,12 +246,7 @@ export const reactRoadMapSections = [
           "винесення логіки в hooks",
         ],
       },
-      {
-        type: "tip",
-        label: "Практика",
-        content:
-          "Твоя поточна структура з shared/ui, pages та manual layouts — уже хороший крок у бік нормальної архітектури.",
-      },
+      
     ],
   },
 

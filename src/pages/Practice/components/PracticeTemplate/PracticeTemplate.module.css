@@ -35,7 +35,7 @@
 .levelButton {
     min-height: 44px;
     padding: 0 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--border);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.03);
     color: inherit;
@@ -47,7 +47,7 @@
 
 .levelButton:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: var(--border);
 }
 
 .levelButtonActive {
@@ -411,14 +411,14 @@
     font-size: 14px;
     outline: none;
     vertical-align: middle;
-  }
-  
-  .select:focus {
+}
+
+.select:focus {
     border-color: var(--color-accent, #2f5bff);
     box-shadow: 0 0 0 3px rgba(47, 91, 255, 0.12);
-  }
+}
 
-  .blankButton {
+.blankButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -433,37 +433,37 @@
     font-size: 14px;
     cursor: pointer;
     vertical-align: middle;
-  }
-  
-  .blankEmpty {
+}
+
+.blankEmpty {
     opacity: 0.8;
-  }
-  
-  .blankFilled {
+}
+
+.blankFilled {
     border-style: solid;
     border-color: var(--color-accent, #2f5bff);
     background: rgba(47, 91, 255, 0.08);
-  }
-  
-  .optionsPanel {
+}
+
+.optionsPanel {
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-  
-  .optionsLabel {
+}
+
+.optionsLabel {
     margin: 0;
     font-size: 15px;
     font-weight: 600;
-  }
-  
-  .optionsChips {
+}
+
+.optionsChips {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  }
-  
-  .optionChip {
+}
+
+.optionChip {
     min-height: 40px;
     padding: 0 14px;
     border-radius: 999px;
@@ -474,31 +474,31 @@
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  
-  .optionChip:hover {
+}
+
+.optionChip:hover {
     transform: translateY(-1px);
     border-color: rgba(255, 255, 255, 0.24);
-  }
-  
-  .optionChip:disabled {
+}
+
+.optionChip:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-  }
+}
 
-  .optionChipUsed {
+.optionChipUsed {
     opacity: 0.45;
     cursor: not-allowed;
     border-color: rgba(255, 255, 255, 0.08);
-  }
+}
 
-  .utilityRow {
+.utilityRow {
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .resetProgressButton {
+}
+
+.resetProgressButton {
     min-height: 40px;
     padding: 0 14px;
     border-radius: 10px;
@@ -508,16 +508,70 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-  }
-  
-  .resetProgressButton:hover {
+}
+
+.resetProgressButton:hover {
     transform: translateY(-1px);
     border-color: var(--color-accent);
-  }
-  
-  .resetProgressButton:active {
+}
+
+.resetProgressButton:active {
     transform: translateY(0);
-  }
+}
+
+.utilityRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.savedHint {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-secondary, #9f9f9f);
+}
+
+.blankCorrect {
+    border-style: solid;
+    border-color: rgba(0, 180, 120, 0.5);
+    background: rgba(0, 180, 120, 0.14);
+    color: rgb(0, 180, 120);
+    font-weight: 700;
+}
+
+.blankWrong {
+    border-style: solid;
+    border-color: rgba(255, 80, 80, 0.5);
+    background: rgba(255, 80, 80, 0.14);
+    color: rgb(255, 80, 80);
+    font-weight: 700;
+}
+
+.inputCorrect {
+    border-color: rgba(0, 180, 120, 0.5);
+    background: rgba(0, 180, 120, 0.08);
+    color: rgb(0, 180, 120);
+}
+
+.inputWrong {
+    border-color: rgba(255, 80, 80, 0.5);
+    background: rgba(255, 80, 80, 0.08);
+    color: rgb(255, 80, 80);
+}
+
+.optionCorrect {
+    border-color: rgba(0, 180, 120, 0.5);
+    background: rgba(0, 180, 120, 0.12);
+    color: rgb(0, 180, 120);
+}
+
+.optionWrong {
+    border-color: rgba(255, 80, 80, 0.5);
+    background: rgba(255, 80, 80, 0.12);
+    color: rgb(255, 80, 80);
+}
 
 @media (max-width: 768px) {
     .options {
